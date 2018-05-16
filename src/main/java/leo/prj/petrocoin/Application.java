@@ -6,11 +6,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.company.petro_coin.PetroCoinApplication;
-import com.company.petro_coin.PetroCoinApplicationBuilder;
-
 import ch.vorburger.mariadb4j.DB;
 import ch.vorburger.mariadb4j.DBConfigurationBuilder;
+import leo.prj.petrocoin.db.PetroCoinApplication;
+import leo.prj.petrocoin.db.PetroCoinApplicationBuilder;
 
 @SpringBootApplication
 @RestController

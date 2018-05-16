@@ -8,12 +8,14 @@
     "name" : "petro-coin",
     "packageLocation" : "src/main/java/",
     "id" : "petro-coin",
+    "packageName" : "leo.prj.petrocoin.db",
     "dbmses" : [
       {
         "expanded" : true,
         "port" : 3306,
         "schemas" : [
           {
+            "expanded" : true,
             "tables" : [
               {
                 "expanded" : true,
@@ -47,10 +49,660 @@
                 "isView" : false,
                 "columns" : [
                   {
-                    "databaseType" : "java.lang.Integer",
+                    "databaseType" : "java.lang.Long",
                     "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
                     "expanded" : true,
                     "nullable" : false,
+                    "autoIncrement" : true,
+                    "name" : "id",
+                    "id" : "id",
+                    "ordinalPosition" : 1,
+                    "enabled" : true
+                  },
+                  {
+                    "databaseType" : "java.lang.String",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "name",
+                    "id" : "name",
+                    "ordinalPosition" : 2,
+                    "enabled" : true
+                  },
+                  {
+                    "databaseType" : "java.lang.Integer",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "is_petro_coin",
+                    "id" : "is_petro_coin",
+                    "ordinalPosition" : 3,
+                    "enabled" : true
+                  },
+                  {
+                    "databaseType" : "java.sql.Timestamp",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "created_date",
+                    "id" : "created_date",
+                    "ordinalPosition" : 4,
+                    "enabled" : true
+                  },
+                  {
+                    "databaseType" : "java.sql.Timestamp",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "updated_date",
+                    "id" : "updated_date",
+                    "ordinalPosition" : 5,
+                    "enabled" : true
+                  }
+                ],
+                "name" : "currency",
+                "id" : "currency",
+                "enabled" : true
+              },
+              {
+                "foreignKeys" : [
+                  {
+                    "expanded" : false,
+                    "foreignKeyColumns" : [
+                      {
+                        "foreignDatabaseName" : "petro-coin",
+                        "foreignSchemaName" : "petro-coin",
+                        "expanded" : true,
+                        "name" : "fk_wallet",
+                        "foreignColumnName" : "id",
+                        "id" : "fk_wallet",
+                        "foreignTableName" : "wallet",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "name" : "FK_WALLET",
+                    "id" : "FK_WALLET",
+                    "enabled" : true
+                  }
+                ],
+                "expanded" : true,
+                "primaryKeyColumns" : [
+                  {
+                    "expanded" : true,
+                    "name" : "fk_wallet",
+                    "id" : "fk_wallet",
+                    "ordinalPosition" : 1,
+                    "enabled" : true
+                  }
+                ],
+                "indexes" : [
+                  {
+                    "expanded" : false,
+                    "unique" : true,
+                    "name" : "PRIMARY",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "fk_wallet",
+                        "id" : "fk_wallet",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "PRIMARY",
+                    "enabled" : true
+                  }
+                ],
+                "isView" : false,
+                "columns" : [
+                  {
+                    "databaseType" : "java.lang.Long",
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
+                    "expanded" : true,
+                    "nullable" : false,
+                    "name" : "fk_wallet",
+                    "id" : "fk_wallet",
+                    "ordinalPosition" : 1,
+                    "enabled" : true
+                  },
+                  {
+                    "databaseType" : "java.sql.Timestamp",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "deposit_date",
+                    "id" : "deposit_date",
+                    "ordinalPosition" : 2,
+                    "enabled" : true
+                  },
+                  {
+                    "databaseType" : "java.lang.Double",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "amount",
+                    "id" : "amount",
+                    "ordinalPosition" : 3,
+                    "enabled" : true
+                  }
+                ],
+                "name" : "deposit_history",
+                "id" : "deposit_history",
+                "enabled" : true
+              },
+              {
+                "foreignKeys" : [
+                  {
+                    "expanded" : false,
+                    "foreignKeyColumns" : [
+                      {
+                        "foreignDatabaseName" : "petro-coin",
+                        "foreignSchemaName" : "petro-coin",
+                        "expanded" : true,
+                        "name" : "fk_rating",
+                        "foreignColumnName" : "id",
+                        "id" : "fk_rating",
+                        "foreignTableName" : "rating",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "name" : "FK_PT_RATING",
+                    "id" : "FK_PT_RATING"
+                  },
+                  {
+                    "expanded" : false,
+                    "foreignKeyColumns" : [
+                      {
+                        "foreignDatabaseName" : "petro-coin",
+                        "foreignSchemaName" : "petro-coin",
+                        "expanded" : true,
+                        "name" : "fk_wallet",
+                        "foreignColumnName" : "id",
+                        "id" : "fk_wallet",
+                        "foreignTableName" : "wallet",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "name" : "FK_PT_WALLET",
+                    "id" : "FK_PT_WALLET"
+                  }
+                ],
+                "expanded" : true,
+                "primaryKeyColumns" : [
+                  {
+                    "expanded" : true,
+                    "name" : "id",
+                    "id" : "id",
+                    "ordinalPosition" : 1
+                  }
+                ],
+                "indexes" : [
+                  {
+                    "expanded" : false,
+                    "unique" : true,
+                    "name" : "PRIMARY",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "id",
+                        "id" : "id",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "PRIMARY"
+                  },
+                  {
+                    "expanded" : false,
+                    "unique" : false,
+                    "name" : "FK_PT_RATING",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "fk_rating",
+                        "id" : "fk_rating",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "FK_PT_RATING"
+                  },
+                  {
+                    "expanded" : false,
+                    "unique" : false,
+                    "name" : "FK_PT_WALLET",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "fk_wallet",
+                        "id" : "fk_wallet",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "FK_PT_WALLET"
+                  }
+                ],
+                "isView" : false,
+                "columns" : [
+                  {
+                    "databaseType" : "java.math.BigInteger",
+                    "expanded" : true,
+                    "nullable" : false,
+                    "autoIncrement" : true,
+                    "name" : "id",
+                    "id" : "id",
+                    "ordinalPosition" : 1,
+                    "enabled" : true
+                  },
+                  {
+                    "databaseType" : "java.lang.Long",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "fk_wallet",
+                    "id" : "fk_wallet",
+                    "ordinalPosition" : 2,
+                    "enabled" : true
+                  },
+                  {
+                    "databaseType" : "java.lang.Long",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "fk_rating",
+                    "id" : "fk_rating",
+                    "ordinalPosition" : 3
+                  },
+                  {
+                    "databaseType" : "java.lang.Double",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "amount",
+                    "id" : "amount",
+                    "ordinalPosition" : 4
+                  },
+                  {
+                    "databaseType" : "java.lang.Integer",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "is_buying",
+                    "id" : "is_buying",
+                    "ordinalPosition" : 5
+                  }
+                ],
+                "name" : "petro_transaction",
+                "id" : "petro_transaction",
+                "enabled" : true
+              },
+              {
+                "foreignKeys" : [
+                  {
+                    "expanded" : false,
+                    "foreignKeyColumns" : [
+                      {
+                        "foreignDatabaseName" : "petro-coin",
+                        "foreignSchemaName" : "petro-coin",
+                        "expanded" : true,
+                        "name" : "fk_currency_from",
+                        "foreignColumnName" : "id",
+                        "id" : "fk_currency_from",
+                        "foreignTableName" : "currency",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "name" : "FK_CURRENCY_FROM",
+                    "id" : "FK_CURRENCY_FROM"
+                  },
+                  {
+                    "expanded" : false,
+                    "foreignKeyColumns" : [
+                      {
+                        "foreignDatabaseName" : "petro-coin",
+                        "foreignSchemaName" : "petro-coin",
+                        "expanded" : true,
+                        "name" : "fk_currency_to",
+                        "foreignColumnName" : "id",
+                        "id" : "fk_currency_to",
+                        "foreignTableName" : "currency",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "name" : "FK_CURRENCY_TO",
+                    "id" : "FK_CURRENCY_TO"
+                  }
+                ],
+                "expanded" : true,
+                "primaryKeyColumns" : [
+                  {
+                    "expanded" : true,
+                    "name" : "id",
+                    "id" : "id",
+                    "ordinalPosition" : 1
+                  }
+                ],
+                "indexes" : [
+                  {
+                    "expanded" : false,
+                    "unique" : true,
+                    "name" : "PRIMARY",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "id",
+                        "id" : "id",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "PRIMARY"
+                  },
+                  {
+                    "expanded" : false,
+                    "unique" : false,
+                    "name" : "FK_CURRENCY_FROM",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "fk_currency_from",
+                        "id" : "fk_currency_from",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "FK_CURRENCY_FROM"
+                  },
+                  {
+                    "expanded" : false,
+                    "unique" : false,
+                    "name" : "FK_CURRENCY_TO",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "fk_currency_to",
+                        "id" : "fk_currency_to",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "FK_CURRENCY_TO"
+                  }
+                ],
+                "isView" : false,
+                "columns" : [
+                  {
+                    "databaseType" : "java.lang.Long",
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
+                    "expanded" : true,
+                    "nullable" : false,
+                    "autoIncrement" : true,
+                    "name" : "id",
+                    "id" : "id",
+                    "ordinalPosition" : 1
+                  },
+                  {
+                    "databaseType" : "java.lang.Long",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "fk_currency_from",
+                    "id" : "fk_currency_from",
+                    "ordinalPosition" : 2
+                  },
+                  {
+                    "databaseType" : "java.lang.Long",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "fk_currency_to",
+                    "id" : "fk_currency_to",
+                    "ordinalPosition" : 3
+                  },
+                  {
+                    "databaseType" : "java.lang.Double",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "sell_rating",
+                    "id" : "sell_rating",
+                    "ordinalPosition" : 4
+                  },
+                  {
+                    "databaseType" : "java.lang.Double",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "buy_rating",
+                    "id" : "buy_rating",
+                    "ordinalPosition" : 5
+                  },
+                  {
+                    "databaseType" : "java.sql.Timestamp",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "created_date",
+                    "id" : "created_date",
+                    "ordinalPosition" : 6
+                  }
+                ],
+                "name" : "rating",
+                "id" : "rating"
+              },
+              {
+                "foreignKeys" : [
+                  {
+                    "expanded" : false,
+                    "foreignKeyColumns" : [
+                      {
+                        "foreignDatabaseName" : "petro-coin",
+                        "foreignSchemaName" : "petro-coin",
+                        "expanded" : true,
+                        "name" : "fk_user_from",
+                        "foreignColumnName" : "id",
+                        "id" : "fk_user_from",
+                        "foreignTableName" : "user",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "name" : "FK_USER_FROM",
+                    "id" : "FK_USER_FROM"
+                  },
+                  {
+                    "expanded" : false,
+                    "foreignKeyColumns" : [
+                      {
+                        "foreignDatabaseName" : "petro-coin",
+                        "foreignSchemaName" : "petro-coin",
+                        "expanded" : true,
+                        "name" : "fk_user_to",
+                        "foreignColumnName" : "id",
+                        "id" : "fk_user_to",
+                        "foreignTableName" : "user",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "name" : "FK_USER_TO",
+                    "id" : "FK_USER_TO"
+                  }
+                ],
+                "expanded" : true,
+                "primaryKeyColumns" : [
+                  {
+                    "expanded" : true,
+                    "name" : "id",
+                    "id" : "id",
+                    "ordinalPosition" : 1
+                  }
+                ],
+                "indexes" : [
+                  {
+                    "expanded" : false,
+                    "unique" : true,
+                    "name" : "PRIMARY",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "id",
+                        "id" : "id",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "PRIMARY"
+                  },
+                  {
+                    "expanded" : false,
+                    "unique" : false,
+                    "name" : "FK_USER_FROM",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "fk_user_from",
+                        "id" : "fk_user_from",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "FK_USER_FROM"
+                  },
+                  {
+                    "expanded" : false,
+                    "unique" : false,
+                    "name" : "FK_USER_TO",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "fk_user_to",
+                        "id" : "fk_user_to",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "FK_USER_TO"
+                  }
+                ],
+                "isView" : false,
+                "columns" : [
+                  {
+                    "databaseType" : "java.math.BigInteger",
+                    "expanded" : true,
+                    "nullable" : false,
+                    "autoIncrement" : true,
+                    "name" : "id",
+                    "id" : "id",
+                    "ordinalPosition" : 1
+                  },
+                  {
+                    "databaseType" : "java.lang.Long",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "fk_user_from",
+                    "id" : "fk_user_from",
+                    "ordinalPosition" : 2
+                  },
+                  {
+                    "databaseType" : "java.lang.Long",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "fk_user_to",
+                    "id" : "fk_user_to",
+                    "ordinalPosition" : 3
+                  },
+                  {
+                    "databaseType" : "java.lang.Long",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "fk_currency",
+                    "id" : "fk_currency",
+                    "ordinalPosition" : 4
+                  },
+                  {
+                    "databaseType" : "java.lang.Double",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "amount",
+                    "id" : "amount",
+                    "ordinalPosition" : 5
+                  },
+                  {
+                    "databaseType" : "java.lang.String",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "status",
+                    "id" : "status",
+                    "ordinalPosition" : 6
+                  },
+                  {
+                    "databaseType" : "java.lang.String",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "content",
+                    "id" : "content",
+                    "ordinalPosition" : 7
+                  },
+                  {
+                    "databaseType" : "java.sql.Timestamp",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "created_date",
+                    "id" : "created_date",
+                    "ordinalPosition" : 8
+                  },
+                  {
+                    "databaseType" : "java.sql.Timestamp",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "execution_date",
+                    "id" : "execution_date",
+                    "ordinalPosition" : 9
+                  }
+                ],
+                "name" : "transaction",
+                "id" : "transaction"
+              },
+              {
+                "expanded" : true,
+                "primaryKeyColumns" : [
+                  {
+                    "expanded" : true,
+                    "name" : "id",
+                    "id" : "id",
+                    "ordinalPosition" : 1,
+                    "enabled" : true
+                  }
+                ],
+                "indexes" : [
+                  {
+                    "expanded" : false,
+                    "unique" : true,
+                    "name" : "PRIMARY",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "id",
+                        "id" : "id",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "PRIMARY",
+                    "enabled" : true
+                  }
+                ],
+                "isView" : false,
+                "columns" : [
+                  {
+                    "databaseType" : "java.lang.String",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "mobile",
+                    "id" : "mobile",
+                    "ordinalPosition" : 5,
+                    "enabled" : true
+                  },
+                  {
+                    "databaseType" : "java.lang.String",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "bank_code",
+                    "id" : "bank_code",
+                    "ordinalPosition" : 9,
+                    "enabled" : true
+                  },
+                  {
+                    "databaseType" : "java.lang.Long",
+                    "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
+                    "nullable" : false,
+                    "autoIncrement" : true,
                     "name" : "id",
                     "id" : "id",
                     "ordinalPosition" : 1,
@@ -87,10 +739,9 @@
                     "databaseType" : "java.lang.String",
                     "expanded" : true,
                     "nullable" : true,
-                    "name" : "mobile",
-                    "id" : "mobile",
-                    "ordinalPosition" : 5,
-                    "enabled" : true
+                    "name" : "phone",
+                    "id" : "phone",
+                    "ordinalPosition" : 5
                   },
                   {
                     "databaseType" : "java.lang.String",
@@ -123,18 +774,191 @@
                     "databaseType" : "java.lang.String",
                     "expanded" : true,
                     "nullable" : true,
-                    "name" : "bank_code",
-                    "id" : "bank_code",
-                    "ordinalPosition" : 9,
-                    "enabled" : true
+                    "name" : "bank_name",
+                    "id" : "bank_name",
+                    "ordinalPosition" : 9
+                  },
+                  {
+                    "databaseType" : "java.lang.String",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "bank_account",
+                    "id" : "bank_account",
+                    "ordinalPosition" : 10
+                  },
+                  {
+                    "databaseType" : "java.lang.String",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "bank_account_name",
+                    "id" : "bank_account_name",
+                    "ordinalPosition" : 11
+                  },
+                  {
+                    "databaseType" : "java.sql.Timestamp",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "created_date",
+                    "id" : "created_date",
+                    "ordinalPosition" : 12
+                  },
+                  {
+                    "databaseType" : "java.sql.Timestamp",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "updated_date",
+                    "id" : "updated_date",
+                    "ordinalPosition" : 13
                   }
                 ],
                 "name" : "user",
                 "id" : "user",
                 "enabled" : true
+              },
+              {
+                "foreignKeys" : [
+                  {
+                    "expanded" : false,
+                    "foreignKeyColumns" : [
+                      {
+                        "foreignDatabaseName" : "petro-coin",
+                        "foreignSchemaName" : "petro-coin",
+                        "expanded" : true,
+                        "name" : "fk_currency",
+                        "foreignColumnName" : "id",
+                        "id" : "fk_currency",
+                        "foreignTableName" : "currency",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "name" : "FK_CURRENCY",
+                    "id" : "FK_CURRENCY"
+                  },
+                  {
+                    "expanded" : false,
+                    "foreignKeyColumns" : [
+                      {
+                        "foreignDatabaseName" : "petro-coin",
+                        "foreignSchemaName" : "petro-coin",
+                        "expanded" : true,
+                        "name" : "fk_user",
+                        "foreignColumnName" : "id",
+                        "id" : "fk_user",
+                        "foreignTableName" : "user",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "name" : "FK_USER",
+                    "id" : "FK_USER"
+                  }
+                ],
+                "expanded" : true,
+                "primaryKeyColumns" : [
+                  {
+                    "expanded" : true,
+                    "name" : "id",
+                    "id" : "id",
+                    "ordinalPosition" : 1
+                  }
+                ],
+                "indexes" : [
+                  {
+                    "expanded" : false,
+                    "unique" : true,
+                    "name" : "PRIMARY",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "id",
+                        "id" : "id",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "PRIMARY"
+                  },
+                  {
+                    "expanded" : false,
+                    "unique" : false,
+                    "name" : "FK_CURRENCY",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "fk_currency",
+                        "id" : "fk_currency",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "FK_CURRENCY"
+                  },
+                  {
+                    "expanded" : false,
+                    "unique" : false,
+                    "name" : "FK_USER",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "fk_user",
+                        "id" : "fk_user",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "FK_USER"
+                  }
+                ],
+                "isView" : false,
+                "columns" : [
+                  {
+                    "databaseType" : "java.lang.Long",
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
+                    "expanded" : true,
+                    "nullable" : false,
+                    "autoIncrement" : true,
+                    "name" : "id",
+                    "id" : "id",
+                    "ordinalPosition" : 1
+                  },
+                  {
+                    "databaseType" : "java.lang.Long",
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
+                    "expanded" : true,
+                    "nullable" : false,
+                    "name" : "fk_user",
+                    "id" : "fk_user",
+                    "ordinalPosition" : 2
+                  },
+                  {
+                    "databaseType" : "java.lang.Long",
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
+                    "expanded" : true,
+                    "nullable" : false,
+                    "name" : "fk_currency",
+                    "id" : "fk_currency",
+                    "ordinalPosition" : 3
+                  },
+                  {
+                    "databaseType" : "java.lang.Double",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "amount",
+                    "id" : "amount",
+                    "ordinalPosition" : 4
+                  },
+                  {
+                    "databaseType" : "java.lang.String",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "wallet_address",
+                    "id" : "wallet_address",
+                    "ordinalPosition" : 5
+                  }
+                ],
+                "name" : "wallet",
+                "id" : "wallet"
               }
             ],
-            "expanded" : true,
             "name" : "petro-coin",
             "id" : "petro-coin",
             "enabled" : true

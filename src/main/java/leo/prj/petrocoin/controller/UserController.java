@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.company.petro_coin.petro_coin.petro_coin.user.UserImpl;
-import com.company.petro_coin.petro_coin.petro_coin.user.UserManager;
+import leo.prj.petrocoin.db.petro_coin.petro_coin.user.UserImpl;
+import leo.prj.petrocoin.db.petro_coin.petro_coin.user.UserManager;
 
 @RestController
 @RequestMapping("/user")

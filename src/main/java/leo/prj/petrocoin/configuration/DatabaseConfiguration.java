@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.company.petro_coin.PetroCoinApplication;
-import com.company.petro_coin.petro_coin.petro_coin.user.UserManager;
+import leo.prj.petrocoin.db.PetroCoinApplication;
+import leo.prj.petrocoin.db.petro_coin.petro_coin.user.UserManager;
 
 @Configuration
 public class DatabaseConfiguration {
