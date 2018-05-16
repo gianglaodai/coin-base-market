@@ -50,8 +50,8 @@
                 "columns" : [
                   {
                     "databaseType" : "java.lang.Long",
-                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
                     "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
                     "nullable" : false,
                     "autoIncrement" : true,
                     "name" : "id",
@@ -101,6 +101,7 @@
                 "enabled" : true
               },
               {
+                "expanded" : true,
                 "foreignKeys" : [
                   {
                     "expanded" : false,
@@ -121,12 +122,18 @@
                     "enabled" : true
                   }
                 ],
-                "expanded" : true,
                 "primaryKeyColumns" : [
                   {
                     "expanded" : true,
                     "name" : "fk_wallet",
                     "id" : "fk_wallet",
+                    "ordinalPosition" : 1,
+                    "enabled" : true
+                  },
+                  {
+                    "expanded" : true,
+                    "name" : "id",
+                    "id" : "id",
                     "ordinalPosition" : 1,
                     "enabled" : true
                   }
@@ -143,22 +150,55 @@
                         "name" : "fk_wallet",
                         "id" : "fk_wallet",
                         "ordinalPosition" : 1
+                      },
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "id",
+                        "id" : "id",
+                        "ordinalPosition" : 1
                       }
                     ],
                     "id" : "PRIMARY",
+                    "enabled" : true
+                  },
+                  {
+                    "expanded" : false,
+                    "unique" : false,
+                    "name" : "FK_WALLET",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "fk_wallet",
+                        "id" : "fk_wallet",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "FK_WALLET",
                     "enabled" : true
                   }
                 ],
                 "isView" : false,
                 "columns" : [
                   {
-                    "databaseType" : "java.lang.Long",
+                    "databaseType" : "java.lang.Integer",
                     "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
                     "expanded" : true,
                     "nullable" : false,
+                    "name" : "id",
+                    "id" : "id",
+                    "ordinalPosition" : 1,
+                    "enabled" : true
+                  },
+                  {
+                    "databaseType" : "java.lang.Long",
+                    "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
+                    "nullable" : false,
                     "name" : "fk_wallet",
                     "id" : "fk_wallet",
-                    "ordinalPosition" : 1,
+                    "ordinalPosition" : 2,
                     "enabled" : true
                   },
                   {
@@ -167,7 +207,7 @@
                     "nullable" : true,
                     "name" : "deposit_date",
                     "id" : "deposit_date",
-                    "ordinalPosition" : 2,
+                    "ordinalPosition" : 3,
                     "enabled" : true
                   },
                   {
@@ -176,7 +216,7 @@
                     "nullable" : true,
                     "name" : "amount",
                     "id" : "amount",
-                    "ordinalPosition" : 3,
+                    "ordinalPosition" : 4,
                     "enabled" : true
                   }
                 ],
@@ -185,6 +225,7 @@
                 "enabled" : true
               },
               {
+                "expanded" : true,
                 "foreignKeys" : [
                   {
                     "expanded" : false,
@@ -221,7 +262,6 @@
                     "id" : "FK_PT_WALLET"
                   }
                 ],
-                "expanded" : true,
                 "primaryKeyColumns" : [
                   {
                     "expanded" : true,
@@ -328,6 +368,7 @@
                 "enabled" : true
               },
               {
+                "expanded" : true,
                 "foreignKeys" : [
                   {
                     "expanded" : false,
@@ -364,7 +405,6 @@
                     "id" : "FK_CURRENCY_TO"
                   }
                 ],
-                "expanded" : true,
                 "primaryKeyColumns" : [
                   {
                     "expanded" : true,
@@ -424,8 +464,8 @@
                 "columns" : [
                   {
                     "databaseType" : "java.lang.Long",
-                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
                     "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
                     "nullable" : false,
                     "autoIncrement" : true,
                     "name" : "id",
@@ -477,6 +517,7 @@
                 "id" : "rating"
               },
               {
+                "expanded" : true,
                 "foreignKeys" : [
                   {
                     "expanded" : false,
@@ -513,7 +554,6 @@
                     "id" : "FK_USER_TO"
                   }
                 ],
-                "expanded" : true,
                 "primaryKeyColumns" : [
                   {
                     "expanded" : true,
@@ -816,6 +856,7 @@
                 "enabled" : true
               },
               {
+                "expanded" : true,
                 "foreignKeys" : [
                   {
                     "expanded" : false,
@@ -852,7 +893,6 @@
                     "id" : "FK_USER"
                   }
                 ],
-                "expanded" : true,
                 "primaryKeyColumns" : [
                   {
                     "expanded" : true,
@@ -912,8 +952,8 @@
                 "columns" : [
                   {
                     "databaseType" : "java.lang.Long",
-                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
                     "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
                     "nullable" : false,
                     "autoIncrement" : true,
                     "name" : "id",
@@ -922,8 +962,8 @@
                   },
                   {
                     "databaseType" : "java.lang.Long",
-                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
                     "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
                     "nullable" : false,
                     "name" : "fk_user",
                     "id" : "fk_user",
@@ -931,8 +971,8 @@
                   },
                   {
                     "databaseType" : "java.lang.Long",
-                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
                     "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
                     "nullable" : false,
                     "name" : "fk_currency",
                     "id" : "fk_currency",

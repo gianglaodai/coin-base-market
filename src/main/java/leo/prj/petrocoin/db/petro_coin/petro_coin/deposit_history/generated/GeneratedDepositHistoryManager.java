@@ -29,6 +29,7 @@ public interface GeneratedDepositHistoryManager extends Manager<DepositHistory> 
     )
     ;
     List<Field<DepositHistory>> FIELDS = unmodifiableList(asList(
+        DepositHistory.ID,
         DepositHistory.FK_WALLET,
         DepositHistory.DEPOSIT_DATE,
         DepositHistory.AMOUNT

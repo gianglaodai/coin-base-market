@@ -32,6 +32,7 @@ public class GeneratedPetroCoinMetadata extends AbstractApplicationMetadata {
         initPart7(sb);
         initPart8(sb);
         initPart9(sb);
+        initPart10(sb);
         return sb.toString();
     }
     
@@ -152,13 +153,23 @@ public class GeneratedPetroCoinMetadata extends AbstractApplicationMetadata {
             "              {",
             "                \"columns\" : [",
             "                  {",
+            "                    \"databaseType\" : \"java.lang.Integer\",",
+            "                    \"enabled\" : true,",
+            "                    \"expanded\" : true,",
+            "                    \"id\" : \"id\",",
+            "                    \"name\" : \"id\",",
+            "                    \"nullable\" : false,",
+            "                    \"ordinalPosition\" : 1,",
+            "                    \"typeMapper\" : \"com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper\"",
+            "                  },",
+            "                  {",
             "                    \"databaseType\" : \"java.lang.Long\",",
             "                    \"enabled\" : true,",
             "                    \"expanded\" : true,",
             "                    \"id\" : \"fk_wallet\",",
             "                    \"name\" : \"fk_wallet\",",
             "                    \"nullable\" : false,",
-            "                    \"ordinalPosition\" : 1,",
+            "                    \"ordinalPosition\" : 2,",
             "                    \"typeMapper\" : \"com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper\"",
             "                  },",
             "                  {",
@@ -168,7 +179,7 @@ public class GeneratedPetroCoinMetadata extends AbstractApplicationMetadata {
             "                    \"id\" : \"deposit_date\",",
             "                    \"name\" : \"deposit_date\",",
             "                    \"nullable\" : true,",
-            "                    \"ordinalPosition\" : 2",
+            "                    \"ordinalPosition\" : 3",
             "                  },",
             "                  {",
             "                    \"databaseType\" : \"java.lang.Double\",",
@@ -177,7 +188,7 @@ public class GeneratedPetroCoinMetadata extends AbstractApplicationMetadata {
             "                    \"id\" : \"amount\",",
             "                    \"name\" : \"amount\",",
             "                    \"nullable\" : true,",
-            "                    \"ordinalPosition\" : 3",
+            "                    \"ordinalPosition\" : 4",
             "                  }",
             "                ],",
             "                \"enabled\" : true,",
@@ -215,10 +226,38 @@ public class GeneratedPetroCoinMetadata extends AbstractApplicationMetadata {
             "                        \"name\" : \"fk_wallet\",",
             "                        \"orderType\" : \"ASC\",",
             "                        \"ordinalPosition\" : 1",
+            "                      },",
+            "                      {",
+            "                        \"expanded\" : true,",
+            "                        \"id\" : \"id\",",
+            "                        \"name\" : \"id\",",
+            "                        \"orderType\" : \"ASC\",",
+            "                        \"ordinalPosition\" : 1",
             "                      }",
             "                    ],",
             "                    \"name\" : \"PRIMARY\",",
             "                    \"unique\" : true",
+            "                  },",
+            "                  {",
+            "                    \"enabled\" : true,",
+            "                    \"expanded\" : false,",
+            "                    \"id\" : \"FK_WALLET\",",
+            "                    \"indexColumns\" : [",
+            "                      {",
+            "                        \"expanded\" : true,",
+            "                        \"id\" : \"fk_wallet\",",
+            "                        \"name\" : \"fk_wallet\",",
+            "                        \"orderType\" : \"ASC\",",
+            "                        \"ordinalPosition\" : 1",
+            "                      }"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart2(StringBuilder sb) {
+        Stream.of(
+            "                    ],",
+            "                    \"name\" : \"FK_WALLET\",",
+            "                    \"unique\" : false",
             "                  }",
             "                ],",
             "                \"isView\" : false,",
@@ -229,6 +268,13 @@ public class GeneratedPetroCoinMetadata extends AbstractApplicationMetadata {
             "                    \"expanded\" : true,",
             "                    \"id\" : \"fk_wallet\",",
             "                    \"name\" : \"fk_wallet\",",
+            "                    \"ordinalPosition\" : 1",
+            "                  },",
+            "                  {",
+            "                    \"enabled\" : true,",
+            "                    \"expanded\" : true,",
+            "                    \"id\" : \"id\",",
+            "                    \"name\" : \"id\",",
             "                    \"ordinalPosition\" : 1",
             "                  }",
             "                ]",
@@ -248,12 +294,7 @@ public class GeneratedPetroCoinMetadata extends AbstractApplicationMetadata {
             "                  {",
             "                    \"databaseType\" : \"java.lang.Long\",",
             "                    \"enabled\" : true,",
-            "                    \"expanded\" : true,"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart2(StringBuilder sb) {
-        Stream.of(
+            "                    \"expanded\" : true,",
             "                    \"id\" : \"fk_wallet\",",
             "                    \"name\" : \"fk_wallet\",",
             "                    \"nullable\" : true,",
@@ -314,7 +355,12 @@ public class GeneratedPetroCoinMetadata extends AbstractApplicationMetadata {
             "                        \"foreignSchemaName\" : \"petro-coin\",",
             "                        \"foreignTableName\" : \"wallet\",",
             "                        \"id\" : \"fk_wallet\",",
-            "                        \"name\" : \"fk_wallet\",",
+            "                        \"name\" : \"fk_wallet\","
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart3(StringBuilder sb) {
+        Stream.of(
             "                        \"ordinalPosition\" : 1",
             "                      }",
             "                    ],",
@@ -354,12 +400,7 @@ public class GeneratedPetroCoinMetadata extends AbstractApplicationMetadata {
             "                    \"name\" : \"FK_PT_RATING\",",
             "                    \"unique\" : false",
             "                  },",
-            "                  {"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart3(StringBuilder sb) {
-        Stream.of(
+            "                  {",
             "                    \"expanded\" : false,",
             "                    \"id\" : \"FK_PT_WALLET\",",
             "                    \"indexColumns\" : [",
@@ -420,7 +461,12 @@ public class GeneratedPetroCoinMetadata extends AbstractApplicationMetadata {
             "                    \"id\" : \"sell_rating\",",
             "                    \"name\" : \"sell_rating\",",
             "                    \"nullable\" : true,",
-            "                    \"ordinalPosition\" : 4",
+            "                    \"ordinalPosition\" : 4"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart4(StringBuilder sb) {
+        Stream.of(
             "                  },",
             "                  {",
             "                    \"databaseType\" : \"java.lang.Double\",",
@@ -460,12 +506,7 @@ public class GeneratedPetroCoinMetadata extends AbstractApplicationMetadata {
             "                  },",
             "                  {",
             "                    \"expanded\" : false,",
-            "                    \"foreignKeyColumns\" : ["
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart4(StringBuilder sb) {
-        Stream.of(
+            "                    \"foreignKeyColumns\" : [",
             "                      {",
             "                        \"expanded\" : true,",
             "                        \"foreignColumnName\" : \"id\",",
@@ -526,7 +567,12 @@ public class GeneratedPetroCoinMetadata extends AbstractApplicationMetadata {
             "                      }",
             "                    ],",
             "                    \"name\" : \"FK_CURRENCY_TO\",",
-            "                    \"unique\" : false",
+            "                    \"unique\" : false"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart5(StringBuilder sb) {
+        Stream.of(
             "                  }",
             "                ],",
             "                \"isView\" : false,",
@@ -566,12 +612,7 @@ public class GeneratedPetroCoinMetadata extends AbstractApplicationMetadata {
             "                    \"name\" : \"fk_user_to\",",
             "                    \"nullable\" : true,",
             "                    \"ordinalPosition\" : 3",
-            "                  },"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart5(StringBuilder sb) {
-        Stream.of(
+            "                  },",
             "                  {",
             "                    \"databaseType\" : \"java.lang.Long\",",
             "                    \"expanded\" : true,",
@@ -632,7 +673,12 @@ public class GeneratedPetroCoinMetadata extends AbstractApplicationMetadata {
             "                        \"foreignDatabaseName\" : \"petro-coin\",",
             "                        \"foreignSchemaName\" : \"petro-coin\",",
             "                        \"foreignTableName\" : \"user\",",
-            "                        \"id\" : \"fk_user_from\",",
+            "                        \"id\" : \"fk_user_from\","
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart6(StringBuilder sb) {
+        Stream.of(
             "                        \"name\" : \"fk_user_from\",",
             "                        \"ordinalPosition\" : 1",
             "                      }",
@@ -672,12 +718,7 @@ public class GeneratedPetroCoinMetadata extends AbstractApplicationMetadata {
             "                        \"ordinalPosition\" : 1",
             "                      }",
             "                    ],",
-            "                    \"name\" : \"PRIMARY\","
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart6(StringBuilder sb) {
-        Stream.of(
+            "                    \"name\" : \"PRIMARY\",",
             "                    \"unique\" : true",
             "                  },",
             "                  {",
@@ -738,7 +779,12 @@ public class GeneratedPetroCoinMetadata extends AbstractApplicationMetadata {
             "                    \"enabled\" : true,",
             "                    \"expanded\" : true,",
             "                    \"id\" : \"bank_code\",",
-            "                    \"name\" : \"bank_code\",",
+            "                    \"name\" : \"bank_code\","
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart7(StringBuilder sb) {
+        Stream.of(
             "                    \"nullable\" : true,",
             "                    \"ordinalPosition\" : 9",
             "                  },",
@@ -778,12 +824,7 @@ public class GeneratedPetroCoinMetadata extends AbstractApplicationMetadata {
             "                    \"id\" : \"email\",",
             "                    \"name\" : \"email\",",
             "                    \"nullable\" : true,",
-            "                    \"ordinalPosition\" : 4"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart7(StringBuilder sb) {
-        Stream.of(
+            "                    \"ordinalPosition\" : 4",
             "                  },",
             "                  {",
             "                    \"databaseType\" : \"java.lang.String\",",
@@ -844,7 +885,12 @@ public class GeneratedPetroCoinMetadata extends AbstractApplicationMetadata {
             "                    \"nullable\" : true,",
             "                    \"ordinalPosition\" : 11",
             "                  },",
-            "                  {",
+            "                  {"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart8(StringBuilder sb) {
+        Stream.of(
             "                    \"databaseType\" : \"java.sql.Timestamp\",",
             "                    \"expanded\" : true,",
             "                    \"id\" : \"created_date\",",
@@ -884,12 +930,7 @@ public class GeneratedPetroCoinMetadata extends AbstractApplicationMetadata {
             "                ],",
             "                \"isView\" : false,",
             "                \"name\" : \"user\",",
-            "                \"primaryKeyColumns\" : ["
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart8(StringBuilder sb) {
-        Stream.of(
+            "                \"primaryKeyColumns\" : [",
             "                  {",
             "                    \"enabled\" : true,",
             "                    \"expanded\" : true,",
@@ -950,7 +991,12 @@ public class GeneratedPetroCoinMetadata extends AbstractApplicationMetadata {
             "                \"foreignKeys\" : [",
             "                  {",
             "                    \"expanded\" : false,",
-            "                    \"foreignKeyColumns\" : [",
+            "                    \"foreignKeyColumns\" : ["
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart9(StringBuilder sb) {
+        Stream.of(
             "                      {",
             "                        \"expanded\" : true,",
             "                        \"foreignColumnName\" : \"id\",",
@@ -990,12 +1036,7 @@ public class GeneratedPetroCoinMetadata extends AbstractApplicationMetadata {
             "                    \"id\" : \"PRIMARY\",",
             "                    \"indexColumns\" : [",
             "                      {",
-            "                        \"expanded\" : true,"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart9(StringBuilder sb) {
-        Stream.of(
+            "                        \"expanded\" : true,",
             "                        \"id\" : \"id\",",
             "                        \"name\" : \"id\",",
             "                        \"orderType\" : \"ASC\",",
@@ -1056,7 +1097,12 @@ public class GeneratedPetroCoinMetadata extends AbstractApplicationMetadata {
             "    ],",
             "    \"enabled\" : true,",
             "    \"expanded\" : true,",
-            "    \"id\" : \"petro-coin\",",
+            "    \"id\" : \"petro-coin\","
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart10(StringBuilder sb) {
+        Stream.of(
             "    \"name\" : \"petro-coin\",",
             "    \"nameProtected\" : false,",
             "    \"packageLocation\" : \"src/main/java/\",",

@@ -23,11 +23,17 @@ import leo.prj.petrocoin.db.petro_coin.petro_coin.wallet.Wallet;
 @GeneratedCode("Speedment")
 public abstract class GeneratedDepositHistoryImpl implements DepositHistory {
     
+    private int id;
     private long fkWallet;
     private Timestamp depositDate;
     private Double amount;
     
     protected GeneratedDepositHistoryImpl() {}
+    
+    @Override
+    public int getId() {
+        return id;
+    }
     
     @Override
     public long getFkWallet() {
@@ -42,6 +48,12 @@ public abstract class GeneratedDepositHistoryImpl implements DepositHistory {
     @Override
     public OptionalDouble getAmount() {
         return OptionalUtil.ofNullable(amount);
+    }
+    
+    @Override
+    public DepositHistory setId(int id) {
+        this.id = id;
+        return this;
     }
     
     @Override
@@ -70,6 +82,7 @@ public abstract class GeneratedDepositHistoryImpl implements DepositHistory {
     @Override
     public String toString() {
         final StringJoiner sj = new StringJoiner(", ", "{ ", " }");
+        sj.add("id = "          + Objects.toString(getId()));
         sj.add("fkWallet = "    + Objects.toString(getFkWallet()));
         sj.add("depositDate = " + Objects.toString(OptionalUtil.unwrap(getDepositDate())));
         sj.add("amount = "      + Objects.toString(OptionalUtil.unwrap(getAmount())));
@@ -81,6 +94,7 @@ public abstract class GeneratedDepositHistoryImpl implements DepositHistory {
         if (this == that) { return true; }
         if (!(that instanceof DepositHistory)) { return false; }
         final DepositHistory thatDepositHistory = (DepositHistory)that;
+        if (this.getId() != thatDepositHistory.getId()) { return false; }
         if (this.getFkWallet() != thatDepositHistory.getFkWallet()) { return false; }
         if (!Objects.equals(this.getDepositDate(), thatDepositHistory.getDepositDate())) { return false; }
         if (!Objects.equals(this.getAmount(), thatDepositHistory.getAmount())) { return false; }
@@ -90,6 +104,7 @@ public abstract class GeneratedDepositHistoryImpl implements DepositHistory {
     @Override
     public int hashCode() {
         int hash = 7;
+        hash = 31 * hash + Integer.hashCode(getId());
         hash = 31 * hash + Long.hashCode(getFkWallet());
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getDepositDate()));
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getAmount()));

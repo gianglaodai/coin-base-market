@@ -42,7 +42,8 @@ implements GeneratedDepositHistoryManager {
     @Override
     public Stream<Field<DepositHistory>> primaryKeyFields() {
         return Stream.of(
-            DepositHistory.FK_WALLET
+            DepositHistory.FK_WALLET,
+            DepositHistory.ID
         );
     }
 }

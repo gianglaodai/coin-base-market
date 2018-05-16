@@ -6,6 +6,7 @@ import com.speedment.runtime.config.identifier.TableIdentifier;
 import com.speedment.runtime.core.manager.Manager;
 import com.speedment.runtime.core.util.OptionalUtil;
 import com.speedment.runtime.field.ComparableField;
+import com.speedment.runtime.field.IntField;
 import com.speedment.runtime.field.LongForeignKeyField;
 import com.speedment.runtime.typemapper.TypeMapper;
 import java.sql.Timestamp;
@@ -29,6 +30,17 @@ public interface GeneratedDepositHistory {
     
     /**
      * This Field corresponds to the {@link DepositHistory} field that can be
+     * obtained using the {@link DepositHistory#getId()} method.
+     */
+    IntField<DepositHistory, Integer> ID = IntField.create(
+        Identifier.ID,
+        DepositHistory::getId,
+        DepositHistory::setId,
+        TypeMapper.primitive(),
+        false
+    );
+    /**
+     * This Field corresponds to the {@link DepositHistory} field that can be
      * obtained using the {@link DepositHistory#getFkWallet()} method.
      */
     LongForeignKeyField<DepositHistory, Long, Wallet> FK_WALLET = LongForeignKeyField.create(
@@ -37,7 +49,7 @@ public interface GeneratedDepositHistory {
         DepositHistory::setFkWallet,
         Wallet.ID,
         TypeMapper.primitive(),
-        true
+        false
     );
     /**
      * This Field corresponds to the {@link DepositHistory} field that can be
@@ -61,6 +73,14 @@ public interface GeneratedDepositHistory {
         TypeMapper.identity(),
         false
     );
+    
+    /**
+     * Returns the id of this DepositHistory. The id field corresponds to the
+     * database column petro-coin.petro-coin.deposit_history.id.
+     * 
+     * @return the id of this DepositHistory
+     */
+    int getId();
     
     /**
      * Returns the fkWallet of this DepositHistory. The fkWallet field
@@ -87,6 +107,15 @@ public interface GeneratedDepositHistory {
      * @return the amount of this DepositHistory
      */
     OptionalDouble getAmount();
+    
+    /**
+     * Sets the id of this DepositHistory. The id field corresponds to the
+     * database column petro-coin.petro-coin.deposit_history.id.
+     * 
+     * @param id to set of this DepositHistory
+     * @return   this DepositHistory instance
+     */
+    DepositHistory setId(int id);
     
     /**
      * Sets the fkWallet of this DepositHistory. The fkWallet field corresponds
@@ -127,6 +156,7 @@ public interface GeneratedDepositHistory {
     
     enum Identifier implements ColumnIdentifier<DepositHistory> {
         
+        ID           ("id"),
         FK_WALLET    ("fk_wallet"),
         DEPOSIT_DATE ("deposit_date"),
         AMOUNT       ("amount");
