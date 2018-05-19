@@ -1,14 +1,14 @@
-package leo.prj.petrocoin.bean.backobject;
+package leo.prj.petrocoin.bean.dto;
 
 import java.util.Date;
 
-public class DepositHistory {
+public class DepositHistoryDTO {
 	private int id;
 	private long fkWallet;
 	private Date depositDate;
 	private double amount;
 
-	public DepositHistory() {
+	public DepositHistoryDTO() {
 		this.id = -1;
 		this.fkWallet = -1;
 		this.depositDate = new Date();

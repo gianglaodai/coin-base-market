@@ -1,15 +1,15 @@
-package leo.prj.petrocoin.bean.backobject;
+package leo.prj.petrocoin.bean.dto;
 
 import java.math.BigInteger;
 
-public class PetroTransaction {
+public class PetroTransactionDTO {
 	private BigInteger id;
 	private long fkWallet;
 	private long fkRating;
 	private double amount;
 	private boolean isBuying;
 
-	public PetroTransaction() {
+	public PetroTransactionDTO() {
 		this.id = BigInteger.valueOf(-1);
 		this.fkWallet = -1;
 		this.fkRating = -1;

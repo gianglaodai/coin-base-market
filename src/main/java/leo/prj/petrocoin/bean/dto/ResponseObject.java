@@ -1,4 +1,4 @@
-package leo.prj.petrocoin.bean.backobject;
+package leo.prj.petrocoin.bean.dto;
 
 import leo.prj.petrocoin.common.CommonConstant;
 

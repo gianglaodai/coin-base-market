@@ -5,7 +5,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import leo.prj.petrocoin.bean.backobject.Currency;
+import leo.prj.petrocoin.bean.dto.CurrencyDTO;
+import leo.prj.petrocoin.db.petro_coin.petro_coin.currency.Currency;
 import leo.prj.petrocoin.db.petro_coin.petro_coin.currency.CurrencyManager;
 import leo.prj.petrocoin.service.converter.CurrencyConverter;
 
@@ -17,27 +18,26 @@ public class CurrencyService {
 	@Autowired
 	private CurrencyConverter currencyConverter;
 
-	public Currency create(Currency currency) {
-		return currencyConverter.createCurrency(currencies.persist(currencyConverter.createDatabaseCurrency(currency)));
+	public CurrencyDTO create(CurrencyDTO currency) {
+		return this.currencyConverter
+				.createCurrency(this.currencies.persist(this.currencyConverter.createDatabaseCurrency(currency)));
 	}
 
-	public Currency update(Currency currency) {
-		return currencyConverter
-				.createCurrency(currencies.persist(currencyConverter.createUpdateDatabaseCurrency(currency)));
+	public CurrencyDTO update(CurrencyDTO currency) {
+		return this.currencyConverter
+				.createCurrency(this.currencies.persist(this.currencyConverter.createUpdateDatabaseCurrency(currency)));
 	}
 
-	public Optional<Currency> read(long id) {
-		Optional<leo.prj.petrocoin.db.petro_coin.petro_coin.currency.Currency> foundCurrency = currencies.stream()
-				.filter(leo.prj.petrocoin.db.petro_coin.petro_coin.currency.Currency.ID.equal(id)).findFirst();
+	public Optional<CurrencyDTO> read(long id) {
+		final Optional<Currency> foundCurrency = this.currencies.stream().filter(Currency.ID.equal(id)).findFirst();
 		if (foundCurrency.isPresent()) {
-			return Optional.of(currencyConverter.createCurrency(foundCurrency.get()));
+			return Optional.of(this.currencyConverter.createCurrency(foundCurrency.get()));
 		}
 
 		return Optional.empty();
 	}
 
 	public void delete(long id) {
-		currencies.stream().filter(leo.prj.petrocoin.db.petro_coin.petro_coin.currency.Currency.ID.equal(id))
-				.forEach(currencies.remover());
+		this.currencies.stream().filter(Currency.ID.equal(id)).forEach(this.currencies.remover());
 	}
 }

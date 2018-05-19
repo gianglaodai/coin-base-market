@@ -5,13 +5,14 @@ import java.util.Date;
 
 import org.springframework.stereotype.Component;
 
+import leo.prj.petrocoin.bean.dto.TransactionDTO;
 import leo.prj.petrocoin.common.CommonConstant;
 import leo.prj.petrocoin.db.petro_coin.petro_coin.transaction.Transaction;
 import leo.prj.petrocoin.db.petro_coin.petro_coin.transaction.TransactionImpl;
 
 @Component
 public class TransactionConverter {
-	public Transaction createDatabaseTransaction(leo.prj.petrocoin.bean.backobject.Transaction transaction) {
+	public Transaction createDatabaseTransaction(TransactionDTO transaction) {
 		return new TransactionImpl().setAmount(transaction.getAmount()).setContent(transaction.getContent())
 				.setCreatedDate(new Timestamp(transaction.getCreatedDate().getTime()))
 				.setExecutionDate(new Timestamp(transaction.getExecutionDate().getTime()))
@@ -19,12 +20,12 @@ public class TransactionConverter {
 				.setFkUserTo(transaction.getFkUserTo());
 	}
 
-	public Transaction createUpdateDatabaseTransaction(leo.prj.petrocoin.bean.backobject.Transaction transaction) {
+	public Transaction createUpdateDatabaseTransaction(TransactionDTO transaction) {
 		return this.createDatabaseTransaction(transaction).setId(transaction.getId());
 	}
 
-	public leo.prj.petrocoin.bean.backobject.Transaction createTransaction(Transaction transaction) {
-		final leo.prj.petrocoin.bean.backobject.Transaction transactionBean = new leo.prj.petrocoin.bean.backobject.Transaction();
+	public TransactionDTO createTransaction(Transaction transaction) {
+		final TransactionDTO transactionBean = new TransactionDTO();
 		transactionBean.setId(transaction.getId());
 		transactionBean.setAmount(transaction.getAmount().orElse(0));
 		transactionBean.setContent(transaction.getContent().orElse(CommonConstant.EMPTY));

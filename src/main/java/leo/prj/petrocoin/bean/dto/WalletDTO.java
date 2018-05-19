@@ -1,15 +1,15 @@
-package leo.prj.petrocoin.bean.backobject;
+package leo.prj.petrocoin.bean.dto;
 
 import leo.prj.petrocoin.common.CommonConstant;
 
-public class Wallet {
+public class WalletDTO {
 	private long id;
 	private long fkUser;
 	private long fkCurrency;
 	private double amount;
 	private String walletAddress;
 
-	public Wallet() {
+	public WalletDTO() {
 		this.id = -1;
 		this.fkUser = -1;
 		this.fkCurrency = -1;

@@ -20,37 +20,37 @@ public class DatabaseConfiguration {
 
 	@Bean
 	public UserManager users() {
-		return petroCoinApplication.getOrThrow(UserManager.class);
+		return this.petroCoinApplication.getOrThrow(UserManager.class);
 	}
 
 	@Bean
 	public WalletManager wallets() {
-		return petroCoinApplication.getOrThrow(WalletManager.class);
+		return this.petroCoinApplication.getOrThrow(WalletManager.class);
 	}
 
 	@Bean
 	public TransactionManager transactions() {
-		return petroCoinApplication.getOrThrow(TransactionManager.class);
+		return this.petroCoinApplication.getOrThrow(TransactionManager.class);
 	}
 
 	@Bean
 	public RatingManager ratings() {
-		return petroCoinApplication.getOrThrow(RatingManager.class);
+		return this.petroCoinApplication.getOrThrow(RatingManager.class);
 	}
 
 	@Bean
 	public PetroTransactionManager petroTransactions() {
-		return petroCoinApplication.getOrThrow(PetroTransactionManager.class);
+		return this.petroCoinApplication.getOrThrow(PetroTransactionManager.class);
 	}
 
 	@Bean
 	public DepositHistoryManager depositHistories() {
-		return petroCoinApplication.getOrThrow(DepositHistoryManager.class);
+		return this.petroCoinApplication.getOrThrow(DepositHistoryManager.class);
 	}
 
 	@Bean
 
 	public CurrencyManager currencies() {
-		return petroCoinApplication.getOrThrow(CurrencyManager.class);
+		return this.petroCoinApplication.getOrThrow(CurrencyManager.class);
 	}
 }

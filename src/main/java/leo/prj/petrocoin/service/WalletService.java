@@ -1,11 +1,14 @@
 package leo.prj.petrocoin.service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import leo.prj.petrocoin.bean.backobject.Wallet;
+import leo.prj.petrocoin.bean.dto.WalletDTO;
+import leo.prj.petrocoin.db.petro_coin.petro_coin.wallet.Wallet;
 import leo.prj.petrocoin.db.petro_coin.petro_coin.wallet.WalletManager;
 import leo.prj.petrocoin.service.converter.WalletConverter;
 
@@ -17,25 +20,29 @@ public class WalletService {
 	@Autowired
 	private WalletConverter walletConverter;
 
-	public Wallet create(Wallet wallet) {
-		return walletConverter.createWallet(wallets.persist(walletConverter.createDatabaseWallet(wallet)));
+	public WalletDTO create(WalletDTO wallet) {
+		return this.walletConverter
+				.createWallet(this.wallets.persist(this.walletConverter.createDatabaseWallet(wallet)));
 	}
 
-	public Wallet update(Wallet wallet) {
-		return walletConverter.createWallet(wallets.persist(walletConverter.createUpdateDatabaseWallet(wallet)));
+	public WalletDTO update(WalletDTO wallet) {
+		return this.walletConverter
+				.createWallet(this.wallets.persist(this.walletConverter.createUpdateDatabaseWallet(wallet)));
 	}
 
-	public Optional<Wallet> read(long id) {
-		Optional<leo.prj.petrocoin.db.petro_coin.petro_coin.wallet.Wallet> foundedWallet = wallets.stream()
-				.filter(leo.prj.petrocoin.db.petro_coin.petro_coin.wallet.Wallet.ID.equal(id)).findFirst();
+	public Optional<WalletDTO> read(long id) {
+		final Optional<Wallet> foundedWallet = this.wallets.stream().filter(Wallet.ID.equal(id)).findFirst();
 		if (foundedWallet.isPresent()) {
-			return Optional.of(walletConverter.createWallet(foundedWallet.get()));
+			return Optional.of(this.walletConverter.createWallet(foundedWallet.get()));
 		}
 		return Optional.empty();
 	}
 
 	public void delete(long id) {
-		wallets.stream().filter(leo.prj.petrocoin.db.petro_coin.petro_coin.wallet.Wallet.ID.equal(id))
-				.forEach(wallets.remover());
+		this.wallets.stream().filter(Wallet.ID.equal(id)).forEach(this.wallets.remover());
+	}
+
+	public List<WalletDTO> getByUserId(long userId) {
+		return this.wallets.stream().filter(Wallet.FK_USER.equal(userId)).map(wallet-> this.walletConverter.createWallet(wallet)).collect(Collectors.toList());
 	}
 }

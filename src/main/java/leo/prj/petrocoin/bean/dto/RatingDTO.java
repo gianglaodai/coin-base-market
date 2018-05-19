@@ -1,8 +1,8 @@
-package leo.prj.petrocoin.bean.backobject;
+package leo.prj.petrocoin.bean.dto;
 
 import java.util.Date;
 
-public class Rating {
+public class RatingDTO {
 	private long id;
 	private long fkCurrencyFrom;
 	private long fkCurrencyTo;
@@ -10,7 +10,7 @@ public class Rating {
 	private double buyRating;
 	private Date createdDate;
 
-	public Rating() {
+	public RatingDTO() {
 		this.id = -1;
 		this.fkCurrencyFrom = -1;
 		this.fkCurrencyTo = -1;

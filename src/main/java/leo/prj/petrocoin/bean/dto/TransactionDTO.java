@@ -1,11 +1,11 @@
-package leo.prj.petrocoin.bean.backobject;
+package leo.prj.petrocoin.bean.dto;
 
 import java.math.BigInteger;
 import java.util.Date;
 
 import leo.prj.petrocoin.common.CommonConstant;
 
-public class Transaction {
+public class TransactionDTO {
 	private BigInteger id;
 	private long fkUserFrom;
 	private long fkUserTo;
@@ -16,7 +16,7 @@ public class Transaction {
 	private Date createdDate;
 	private Date executionDate;
 
-	public Transaction() {
+	public TransactionDTO() {
 		this.id = BigInteger.valueOf(-1);
 		this.fkUserFrom = -1;
 		this.fkUserTo = -1;

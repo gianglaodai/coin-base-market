@@ -5,7 +5,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import leo.prj.petrocoin.bean.backobject.User;
+import leo.prj.petrocoin.bean.dto.UserDTO;
+import leo.prj.petrocoin.db.petro_coin.petro_coin.user.User;
 import leo.prj.petrocoin.db.petro_coin.petro_coin.user.UserManager;
 import leo.prj.petrocoin.service.converter.UserConverter;
 
@@ -17,18 +18,17 @@ public class UserService {
 	@Autowired
 	private UserManager users;
 
-	public User create(User user) {
-		return userConverter.createUser(this.users.persist(this.userConverter.createDatabaseUser(user)));
+	public UserDTO create(UserDTO user) {
+		return this.userConverter.createUser(this.users.persist(this.userConverter.createDatabaseUser(user)));
 	}
 
-	public User update(User user) {
+	public UserDTO update(UserDTO user) {
 		return this.userConverter.createUser(this.users.update(this.userConverter.createUpdateDatabaseUser(user)));
 	}
 
-	public Optional<User> read(long id) {
+	public Optional<UserDTO> read(long id) {
 
-		Optional<leo.prj.petrocoin.db.petro_coin.petro_coin.user.User> foundedUser = this.users.stream()
-				.filter(leo.prj.petrocoin.db.petro_coin.petro_coin.user.User.ID.equal(id)).findFirst();
+		final Optional<User> foundedUser = this.users.stream().filter(User.ID.equal(id)).findFirst();
 		if (foundedUser.isPresent()) {
 			return Optional.of(this.userConverter.createUser(foundedUser.get()));
 		}
@@ -36,7 +36,6 @@ public class UserService {
 	}
 
 	public void delete(long id) {
-		users.stream().filter(leo.prj.petrocoin.db.petro_coin.petro_coin.user.User.ID.equal(id))
-				.forEach(users.remover());
+		this.users.stream().filter(User.ID.equal(id)).forEach(this.users.remover());
 	}
 }

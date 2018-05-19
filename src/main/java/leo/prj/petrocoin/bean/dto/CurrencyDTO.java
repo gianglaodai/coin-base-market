@@ -1,17 +1,17 @@
-package leo.prj.petrocoin.bean.backobject;
+package leo.prj.petrocoin.bean.dto;
 
 import java.util.Date;
 
 import leo.prj.petrocoin.common.CommonConstant;
 
-public class Currency {
+public class CurrencyDTO {
 	private long id;
 	private String name;
 	private boolean isPetroCoin;
 	private Date createdDate;
 	private Date updatedDate;
 
-	public Currency() {
+	public CurrencyDTO() {
 		this.id = -1;
 		this.name = CommonConstant.EMPTY;
 		this.isPetroCoin = false;

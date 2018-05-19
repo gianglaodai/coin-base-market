@@ -1,10 +1,10 @@
-package leo.prj.petrocoin.bean.backobject;
+package leo.prj.petrocoin.bean.dto;
 
 import java.util.Date;
 
 import leo.prj.petrocoin.common.CommonConstant;
 
-public class User {
+public class UserDTO {
 	private long id;
 	private String mobile;
 	private String bankCode;
@@ -21,7 +21,7 @@ public class User {
 	private Date createdDate;
 	private Date updatedDate;
 
-	public User() {
+	public UserDTO() {
 		this.id = -1;
 		this.mobile = CommonConstant.EMPTY;
 		this.bankCode = CommonConstant.EMPTY;
