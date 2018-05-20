@@ -32,8 +32,8 @@ public abstract class GeneratedWalletSqlAdapter implements SqlAdapter<Wallet> {
     protected Wallet apply(ResultSet resultSet, int offset) throws SQLException {
         return createEntity()
             .setId(            resultSet.getLong(1 + offset))
-            .setFkUser(        resultSet.getLong(2 + offset))
-            .setFkCurrency(    resultSet.getLong(3 + offset))
+            .setFkUser(        getLong(resultSet, 2 + offset))
+            .setFkCurrency(    getLong(resultSet, 3 + offset))
             .setAmount(        getDouble(resultSet, 4 + offset))
             .setWalletAddress( resultSet.getString(5 + offset))
             ;

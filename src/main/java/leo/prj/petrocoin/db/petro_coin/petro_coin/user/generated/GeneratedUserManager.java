@@ -29,18 +29,18 @@ public interface GeneratedUserManager extends Manager<User> {
     ;
     List<Field<User>> FIELDS = unmodifiableList(asList(
         User.ID,
+        User.MOBILE,
+        User.BANK_CODE,
         User.FULL_NAME,
         User.PASSWORD,
         User.EMAIL,
-        User.MOBILE,
         User.PHONE,
         User.NATION,
         User.IS_ACTIVE,
         User.IS_DELETE,
-        User.BANK_CODE,
+        User.BANK_ACCOUNT_NAME,
         User.BANK_NAME,
         User.BANK_ACCOUNT,
-        User.BANK_ACCOUNT_NAME,
         User.CREATED_DATE,
         User.UPDATED_DATE
     ));

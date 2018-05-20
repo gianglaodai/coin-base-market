@@ -3,6 +3,8 @@ package leo.prj.petrocoin.service;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ public class TransactionService {
 	@Autowired
 	private TransactionConverter transactionConverter;
 
+	private Function<Transaction, TransactionDTO> mapper = transaction -> this.transactionConverter
+			.createTransaction(transaction);
+
 	public TransactionDTO create(TransactionDTO transaction) {
 		return this.transactionConverter.createTransaction(
 				this.transactions.persist(this.transactionConverter.createDatabaseTransaction(transaction)));
@@ -33,12 +38,7 @@ public class TransactionService {
 	}
 
 	public Optional<TransactionDTO> read(BigInteger id) {
-		final Optional<Transaction> foundTransaction = this.transactions.stream().filter(Transaction.ID.equal(id))
-				.findFirst();
-		if (foundTransaction.isPresent()) {
-			return Optional.of(this.transactionConverter.createTransaction(foundTransaction.get()));
-		}
-		return Optional.empty();
+		return this.transactions.stream().filter(Transaction.ID.equal(id)).map(mapper).findFirst();
 	}
 
 	public void delete(BigInteger id) {
@@ -46,20 +46,22 @@ public class TransactionService {
 	}
 
 	public List<TransactionDTO> getAvailableTransaction(long userId) {
-		return this.transactions.stream()
-				.filter(transaction -> transaction.getStatus().orElse(TransactionStatus.NEW.name())
-						.equals(TransactionStatus.NEW.name()) && transaction.getFkUserFrom().getAsLong() != userId)
-				.map(transaction -> this.transactionConverter.createTransaction(transaction))
-				.collect(Collectors.toList());
+		return this.getTransactions(transaction -> transaction.getStatus().orElse(TransactionStatus.NEW.name())
+				.equals(TransactionStatus.NEW.name()) && transaction.getFkUserFrom().orElse(-1) != userId);
 	}
 
 	public List<TransactionDTO> getTransactionsOfUser(long userId) {
-		return this.transactions.stream()
-				.filter(transaction -> transaction.getStatus().get().equals(TransactionStatus.NEW.name())
-						|| transaction.getStatus().get().equals(TransactionStatus.ORDERED.name()))
-				.filter(transaction -> transaction.getFkUserFrom().getAsLong() == userId
-						|| transaction.getFkUserTo().getAsLong() == userId)
-				.map(transaction -> this.transactionConverter.createTransaction(transaction))
-				.collect(Collectors.toList());
+		return this.getTransactions(transaction -> (transaction.getStatus().get().equals(TransactionStatus.NEW.name())
+				|| transaction.getStatus().get().equals(TransactionStatus.ORDERED.name()))
+				&& (transaction.getFkUserFrom().orElse(-1) == userId
+						|| transaction.getFkUserTo().orElse(-1) == userId));
+	}
+
+	public List<TransactionDTO> getAll() {
+		return this.getTransactions(transaction -> true);
+	}
+
+	private List<TransactionDTO> getTransactions(Predicate<? super Transaction> predicate) {
+		return this.transactions.stream().filter(predicate).map(mapper).collect(Collectors.toList());
 	}
 }

@@ -6,12 +6,14 @@ import com.speedment.runtime.config.identifier.TableIdentifier;
 import com.speedment.runtime.core.manager.Manager;
 import com.speedment.runtime.core.util.OptionalUtil;
 import com.speedment.runtime.field.ComparableField;
-import com.speedment.runtime.field.IntField;
+import com.speedment.runtime.field.LongField;
 import com.speedment.runtime.field.LongForeignKeyField;
+import com.speedment.runtime.field.StringField;
 import com.speedment.runtime.typemapper.TypeMapper;
 import java.sql.Timestamp;
 import java.util.Optional;
 import java.util.OptionalDouble;
+import java.util.OptionalLong;
 import leo.prj.petrocoin.db.petro_coin.petro_coin.deposit_history.DepositHistory;
 import leo.prj.petrocoin.db.petro_coin.petro_coin.wallet.Wallet;
 
@@ -32,7 +34,7 @@ public interface GeneratedDepositHistory {
      * This Field corresponds to the {@link DepositHistory} field that can be
      * obtained using the {@link DepositHistory#getId()} method.
      */
-    IntField<DepositHistory, Integer> ID = IntField.create(
+    LongField<DepositHistory, Long> ID = LongField.create(
         Identifier.ID,
         DepositHistory::getId,
         DepositHistory::setId,
@@ -45,7 +47,7 @@ public interface GeneratedDepositHistory {
      */
     LongForeignKeyField<DepositHistory, Long, Wallet> FK_WALLET = LongForeignKeyField.create(
         Identifier.FK_WALLET,
-        DepositHistory::getFkWallet,
+        o -> OptionalUtil.unwrap(o.getFkWallet()),
         DepositHistory::setFkWallet,
         Wallet.ID,
         TypeMapper.primitive(),
@@ -73,6 +75,17 @@ public interface GeneratedDepositHistory {
         TypeMapper.identity(),
         false
     );
+    /**
+     * This Field corresponds to the {@link DepositHistory} field that can be
+     * obtained using the {@link DepositHistory#getCbTransactionId()} method.
+     */
+    StringField<DepositHistory, String> CB_TRANSACTION_ID = StringField.create(
+        Identifier.CB_TRANSACTION_ID,
+        o -> OptionalUtil.unwrap(o.getCbTransactionId()),
+        DepositHistory::setCbTransactionId,
+        TypeMapper.identity(),
+        false
+    );
     
     /**
      * Returns the id of this DepositHistory. The id field corresponds to the
@@ -80,7 +93,7 @@ public interface GeneratedDepositHistory {
      * 
      * @return the id of this DepositHistory
      */
-    int getId();
+    long getId();
     
     /**
      * Returns the fkWallet of this DepositHistory. The fkWallet field
@@ -89,7 +102,7 @@ public interface GeneratedDepositHistory {
      * 
      * @return the fkWallet of this DepositHistory
      */
-    long getFkWallet();
+    OptionalLong getFkWallet();
     
     /**
      * Returns the depositDate of this DepositHistory. The depositDate field
@@ -109,13 +122,22 @@ public interface GeneratedDepositHistory {
     OptionalDouble getAmount();
     
     /**
+     * Returns the cbTransactionId of this DepositHistory. The cbTransactionId
+     * field corresponds to the database column
+     * petro-coin.petro-coin.deposit_history.cb_transaction_id.
+     * 
+     * @return the cbTransactionId of this DepositHistory
+     */
+    Optional<String> getCbTransactionId();
+    
+    /**
      * Sets the id of this DepositHistory. The id field corresponds to the
      * database column petro-coin.petro-coin.deposit_history.id.
      * 
      * @param id to set of this DepositHistory
      * @return   this DepositHistory instance
      */
-    DepositHistory setId(int id);
+    DepositHistory setId(long id);
     
     /**
      * Sets the fkWallet of this DepositHistory. The fkWallet field corresponds
@@ -146,20 +168,31 @@ public interface GeneratedDepositHistory {
     DepositHistory setAmount(Double amount);
     
     /**
+     * Sets the cbTransactionId of this DepositHistory. The cbTransactionId
+     * field corresponds to the database column
+     * petro-coin.petro-coin.deposit_history.cb_transaction_id.
+     * 
+     * @param cbTransactionId to set of this DepositHistory
+     * @return                this DepositHistory instance
+     */
+    DepositHistory setCbTransactionId(String cbTransactionId);
+    
+    /**
      * Queries the specified manager for the referenced Wallet. If no such
      * Wallet exists, an {@code NullPointerException} will be thrown.
      * 
      * @param foreignManager the manager to query for the entity
      * @return               the foreign entity referenced
      */
-    Wallet findFkWallet(Manager<Wallet> foreignManager);
+    Optional<Wallet> findFkWallet(Manager<Wallet> foreignManager);
     
     enum Identifier implements ColumnIdentifier<DepositHistory> {
         
-        ID           ("id"),
-        FK_WALLET    ("fk_wallet"),
-        DEPOSIT_DATE ("deposit_date"),
-        AMOUNT       ("amount");
+        ID                ("id"),
+        FK_WALLET         ("fk_wallet"),
+        DEPOSIT_DATE      ("deposit_date"),
+        AMOUNT            ("amount"),
+        CB_TRANSACTION_ID ("cb_transaction_id");
         
         private final String columnId;
         private final TableIdentifier<DepositHistory> tableIdentifier;

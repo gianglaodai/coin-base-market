@@ -2,6 +2,7 @@ package leo.prj.petrocoin.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,16 @@ public class WalletService {
 	}
 
 	public List<WalletDTO> getByUserId(long userId) {
-		return this.wallets.stream().filter(Wallet.FK_USER.equal(userId)).map(wallet-> this.walletConverter.createWallet(wallet)).collect(Collectors.toList());
+		return this.wallets.stream().filter(Wallet.FK_USER.equal(userId))
+				.map(wallet -> this.walletConverter.createWallet(wallet)).collect(Collectors.toList());
+	}
+
+	public List<WalletDTO> getAll() {
+		return this.getWallets(wallet -> true);
+	}
+
+	private List<WalletDTO> getWallets(Predicate<? super Wallet> predicate) {
+		return this.wallets.stream().filter(predicate).map(wallet -> this.walletConverter.createWallet(wallet))
+				.collect(Collectors.toList());
 	}
 }

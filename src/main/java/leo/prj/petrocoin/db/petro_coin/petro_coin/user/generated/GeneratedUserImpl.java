@@ -21,9 +21,10 @@ import leo.prj.petrocoin.db.petro_coin.petro_coin.user.User;
 @GeneratedCode("Speedment")
 public abstract class GeneratedUserImpl implements User {
     
+    private String bankAccountName;
+    private long id;
     private String mobile;
     private String bankCode;
-    private long id;
     private String fullName;
     private String password;
     private String email;
@@ -33,11 +34,20 @@ public abstract class GeneratedUserImpl implements User {
     private Integer isDelete;
     private String bankName;
     private String bankAccount;
-    private String bankAccountName;
     private Timestamp createdDate;
     private Timestamp updatedDate;
     
     protected GeneratedUserImpl() {}
+    
+    @Override
+    public Optional<String> getBankAccountName() {
+        return Optional.ofNullable(bankAccountName);
+    }
+    
+    @Override
+    public long getId() {
+        return id;
+    }
     
     @Override
     public Optional<String> getMobile() {
@@ -47,11 +57,6 @@ public abstract class GeneratedUserImpl implements User {
     @Override
     public Optional<String> getBankCode() {
         return Optional.ofNullable(bankCode);
-    }
-    
-    @Override
-    public long getId() {
-        return id;
     }
     
     @Override
@@ -100,11 +105,6 @@ public abstract class GeneratedUserImpl implements User {
     }
     
     @Override
-    public Optional<String> getBankAccountName() {
-        return Optional.ofNullable(bankAccountName);
-    }
-    
-    @Override
     public Optional<Timestamp> getCreatedDate() {
         return Optional.ofNullable(createdDate);
     }
@@ -112,6 +112,18 @@ public abstract class GeneratedUserImpl implements User {
     @Override
     public Optional<Timestamp> getUpdatedDate() {
         return Optional.ofNullable(updatedDate);
+    }
+    
+    @Override
+    public User setBankAccountName(String bankAccountName) {
+        this.bankAccountName = bankAccountName;
+        return this;
+    }
+    
+    @Override
+    public User setId(long id) {
+        this.id = id;
+        return this;
     }
     
     @Override
@@ -123,12 +135,6 @@ public abstract class GeneratedUserImpl implements User {
     @Override
     public User setBankCode(String bankCode) {
         this.bankCode = bankCode;
-        return this;
-    }
-    
-    @Override
-    public User setId(long id) {
-        this.id = id;
         return this;
     }
     
@@ -187,12 +193,6 @@ public abstract class GeneratedUserImpl implements User {
     }
     
     @Override
-    public User setBankAccountName(String bankAccountName) {
-        this.bankAccountName = bankAccountName;
-        return this;
-    }
-    
-    @Override
     public User setCreatedDate(Timestamp createdDate) {
         this.createdDate = createdDate;
         return this;
@@ -207,9 +207,10 @@ public abstract class GeneratedUserImpl implements User {
     @Override
     public String toString() {
         final StringJoiner sj = new StringJoiner(", ", "{ ", " }");
+        sj.add("bankAccountName = " + Objects.toString(OptionalUtil.unwrap(getBankAccountName())));
+        sj.add("id = "              + Objects.toString(getId()));
         sj.add("mobile = "          + Objects.toString(OptionalUtil.unwrap(getMobile())));
         sj.add("bankCode = "        + Objects.toString(OptionalUtil.unwrap(getBankCode())));
-        sj.add("id = "              + Objects.toString(getId()));
         sj.add("fullName = "        + Objects.toString(OptionalUtil.unwrap(getFullName())));
         sj.add("password = "        + Objects.toString(OptionalUtil.unwrap(getPassword())));
         sj.add("email = "           + Objects.toString(OptionalUtil.unwrap(getEmail())));
@@ -219,7 +220,6 @@ public abstract class GeneratedUserImpl implements User {
         sj.add("isDelete = "        + Objects.toString(OptionalUtil.unwrap(getIsDelete())));
         sj.add("bankName = "        + Objects.toString(OptionalUtil.unwrap(getBankName())));
         sj.add("bankAccount = "     + Objects.toString(OptionalUtil.unwrap(getBankAccount())));
-        sj.add("bankAccountName = " + Objects.toString(OptionalUtil.unwrap(getBankAccountName())));
         sj.add("createdDate = "     + Objects.toString(OptionalUtil.unwrap(getCreatedDate())));
         sj.add("updatedDate = "     + Objects.toString(OptionalUtil.unwrap(getUpdatedDate())));
         return "UserImpl " + sj.toString();
@@ -230,9 +230,10 @@ public abstract class GeneratedUserImpl implements User {
         if (this == that) { return true; }
         if (!(that instanceof User)) { return false; }
         final User thatUser = (User)that;
+        if (!Objects.equals(this.getBankAccountName(), thatUser.getBankAccountName())) { return false; }
+        if (this.getId() != thatUser.getId()) { return false; }
         if (!Objects.equals(this.getMobile(), thatUser.getMobile())) { return false; }
         if (!Objects.equals(this.getBankCode(), thatUser.getBankCode())) { return false; }
-        if (this.getId() != thatUser.getId()) { return false; }
         if (!Objects.equals(this.getFullName(), thatUser.getFullName())) { return false; }
         if (!Objects.equals(this.getPassword(), thatUser.getPassword())) { return false; }
         if (!Objects.equals(this.getEmail(), thatUser.getEmail())) { return false; }
@@ -242,7 +243,6 @@ public abstract class GeneratedUserImpl implements User {
         if (!Objects.equals(this.getIsDelete(), thatUser.getIsDelete())) { return false; }
         if (!Objects.equals(this.getBankName(), thatUser.getBankName())) { return false; }
         if (!Objects.equals(this.getBankAccount(), thatUser.getBankAccount())) { return false; }
-        if (!Objects.equals(this.getBankAccountName(), thatUser.getBankAccountName())) { return false; }
         if (!Objects.equals(this.getCreatedDate(), thatUser.getCreatedDate())) { return false; }
         if (!Objects.equals(this.getUpdatedDate(), thatUser.getUpdatedDate())) { return false; }
         return true;
@@ -251,9 +251,10 @@ public abstract class GeneratedUserImpl implements User {
     @Override
     public int hashCode() {
         int hash = 7;
+        hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getBankAccountName()));
+        hash = 31 * hash + Long.hashCode(getId());
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getMobile()));
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getBankCode()));
-        hash = 31 * hash + Long.hashCode(getId());
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getFullName()));
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getPassword()));
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getEmail()));
@@ -263,7 +264,6 @@ public abstract class GeneratedUserImpl implements User {
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getIsDelete()));
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getBankName()));
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getBankAccount()));
-        hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getBankAccountName()));
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getCreatedDate()));
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getUpdatedDate()));
         return hash;

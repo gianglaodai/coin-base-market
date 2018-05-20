@@ -2,6 +2,7 @@ package leo.prj.petrocoin.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,16 +12,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import leo.prj.petrocoin.bean.dto.LoginBean;
 import leo.prj.petrocoin.bean.dto.ResponseObject;
 import leo.prj.petrocoin.bean.dto.UserDTO;
 import leo.prj.petrocoin.service.UserService;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/user")
 public class UserController extends GeneralController {
 
 	@Autowired
 	private UserService userService;
+
+	@GetMapping("/all")
+	public ResponseEntity<ResponseObject<Object>> getAll() {
+		try {
+			return ResponseEntity.ok(new ResponseObject<>(this.userService.getAll()));
+		} catch (final Exception e) {
+			return this.createErrorResponse(e);
+		}
+	}
 
 	@PostMapping("/create")
 	public ResponseEntity<ResponseObject<Object>> create(@RequestBody UserDTO user) {
@@ -54,6 +66,15 @@ public class UserController extends GeneralController {
 		try {
 			this.userService.delete(id);
 			return ResponseEntity.ok(new ResponseObject<>(true));
+		} catch (final Exception e) {
+			return this.createErrorResponse(e);
+		}
+	}
+
+	@PostMapping("/login")
+	public ResponseEntity<ResponseObject<Object>> login(@RequestBody LoginBean loginBean) {
+		try {
+			return ResponseEntity.ok(new ResponseObject<>(this.userService.login(loginBean)));
 		} catch (final Exception e) {
 			return this.createErrorResponse(e);
 		}

@@ -155,6 +155,15 @@ public abstract class GeneratedTransactionImpl implements Transaction {
     }
     
     @Override
+    public Optional<User> findFkCurrency(Manager<User> foreignManager) {
+        if (getFkCurrency().isPresent()) {
+            return foreignManager.stream().filter(User.ID.equal(getFkCurrency().getAsLong())).findAny();
+        } else {
+            return Optional.empty();
+        }
+    }
+    
+    @Override
     public String toString() {
         final StringJoiner sj = new StringJoiner(", ", "{ ", " }");
         sj.add("id = "            + Objects.toString(getId()));

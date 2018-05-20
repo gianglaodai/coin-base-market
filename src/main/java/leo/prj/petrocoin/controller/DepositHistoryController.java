@@ -24,6 +24,15 @@ public class DepositHistoryController extends GeneralController {
 	@Autowired
 	private DepositHistoryService depositHistoryService;
 
+	@GetMapping("/all")
+	public ResponseEntity<ResponseObject<Object>> getAll() {
+		try {
+			return ResponseEntity.ok(new ResponseObject<>(this.depositHistoryService.getAll()));
+		} catch (final Exception e) {
+			return this.createErrorResponse(e);
+		}
+	}
+
 	@PostMapping("/create")
 	public ResponseEntity<ResponseObject<Object>> create(@RequestBody DepositHistoryDTO depositHistory) {
 		try {
@@ -43,7 +52,7 @@ public class DepositHistoryController extends GeneralController {
 	}
 
 	@GetMapping("/read")
-	public ResponseEntity<ResponseObject<Object>> read(@RequestParam int id) {
+	public ResponseEntity<ResponseObject<Object>> read(@RequestParam long id) {
 		try {
 			return ResponseEntity.ok(new ResponseObject<>(this.depositHistoryService.read(id).get()));
 		} catch (final Exception e) {
@@ -52,7 +61,7 @@ public class DepositHistoryController extends GeneralController {
 	}
 
 	@DeleteMapping("/delete")
-	public ResponseEntity<ResponseObject<Object>> delete(@RequestParam int id) {
+	public ResponseEntity<ResponseObject<Object>> delete(@RequestParam long id) {
 		try {
 			this.depositHistoryService.delete(id);
 			return ResponseEntity.ok(new ResponseObject<>(true));

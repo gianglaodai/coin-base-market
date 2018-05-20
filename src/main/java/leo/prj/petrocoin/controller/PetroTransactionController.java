@@ -26,11 +26,19 @@ public class PetroTransactionController extends GeneralController {
 	@Autowired
 	private PetroTransactionService petroTransactionService;
 
+	@GetMapping("/all")
+	public ResponseEntity<ResponseObject<Object>> getAll() {
+		try {
+			return ResponseEntity.ok(new ResponseObject<>(this.petroTransactionService.getAll()));
+		} catch (final Exception e) {
+			return this.createErrorResponse(e);
+		}
+	}
+
 	@PostMapping("/create")
 	public ResponseEntity<ResponseObject<Object>> create(@RequestBody PetroTransactionDTO petroTransaction) {
 		try {
-			return ResponseEntity
-					.ok(new ResponseObject<>(this.petroTransactionService.create(petroTransaction)));
+			return ResponseEntity.ok(new ResponseObject<>(this.petroTransactionService.create(petroTransaction)));
 		} catch (final Exception e) {
 			return this.createErrorResponse(e);
 		}
@@ -39,8 +47,7 @@ public class PetroTransactionController extends GeneralController {
 	@PutMapping("/update")
 	public ResponseEntity<ResponseObject<Object>> update(@RequestBody PetroTransactionDTO petroTransaction) {
 		try {
-			return ResponseEntity
-					.ok(new ResponseObject<>(this.petroTransactionService.update(petroTransaction)));
+			return ResponseEntity.ok(new ResponseObject<>(this.petroTransactionService.update(petroTransaction)));
 		} catch (final Exception e) {
 			return this.createErrorResponse(e);
 		}

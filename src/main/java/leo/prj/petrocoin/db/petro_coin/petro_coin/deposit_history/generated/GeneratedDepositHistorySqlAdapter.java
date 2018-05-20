@@ -32,10 +32,11 @@ public abstract class GeneratedDepositHistorySqlAdapter implements SqlAdapter<De
     
     protected DepositHistory apply(ResultSet resultSet, int offset) throws SQLException {
         return createEntity()
-            .setId(          resultSet.getInt(1 + offset))
-            .setFkWallet(    resultSet.getLong(2 + offset))
-            .setDepositDate( resultSet.getTimestamp(3 + offset))
-            .setAmount(      getDouble(resultSet, 4 + offset))
+            .setId(              resultSet.getLong(1 + offset))
+            .setFkWallet(        getLong(resultSet, 2 + offset))
+            .setDepositDate(     resultSet.getTimestamp(3 + offset))
+            .setAmount(          getDouble(resultSet, 4 + offset))
+            .setCbTransactionId( resultSet.getString(5 + offset))
             ;
     }
     

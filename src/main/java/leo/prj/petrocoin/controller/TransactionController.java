@@ -4,6 +4,7 @@ import java.math.BigInteger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,12 +18,22 @@ import leo.prj.petrocoin.bean.dto.ResponseObject;
 import leo.prj.petrocoin.bean.dto.TransactionDTO;
 import leo.prj.petrocoin.service.TransactionService;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/transaction")
 public class TransactionController extends GeneralController {
 
 	@Autowired
 	private TransactionService transactionService;
+
+	@GetMapping("/all")
+	public ResponseEntity<ResponseObject<Object>> getAll() {
+		try {
+			return ResponseEntity.ok(new ResponseObject<>(this.transactionService.getAll()));
+		} catch (final Exception e) {
+			return this.createErrorResponse(e);
+		}
+	}
 
 	@PostMapping("/create")
 	public ResponseEntity<ResponseObject<Object>> create(@RequestBody TransactionDTO transaction) {
@@ -60,18 +71,18 @@ public class TransactionController extends GeneralController {
 			return this.createErrorResponse(e);
 		}
 	}
-	
+
 	@GetMapping("/available")
-	public ResponseEntity<ResponseObject<Object>> getAvailableTransactions(@RequestParam long userId){
+	public ResponseEntity<ResponseObject<Object>> getAvailableTransactions(@RequestParam long userId) {
 		try {
 			return ResponseEntity.ok(new ResponseObject<>(this.transactionService.getAvailableTransaction(userId)));
 		} catch (final Exception e) {
 			return this.createErrorResponse(e);
 		}
 	}
-	
+
 	@GetMapping("/byUser")
-	public ResponseEntity<ResponseObject<Object>> getTransactionsOfUser(@RequestParam long userId){
+	public ResponseEntity<ResponseObject<Object>> getTransactionsOfUser(@RequestParam long userId) {
 		try {
 			return ResponseEntity.ok(new ResponseObject<>(this.transactionService.getTransactionsOfUser(userId)));
 		} catch (final Exception e) {

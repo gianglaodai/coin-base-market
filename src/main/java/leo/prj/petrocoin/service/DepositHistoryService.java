@@ -1,6 +1,9 @@
 package leo.prj.petrocoin.service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +22,9 @@ public class DepositHistoryService {
 	@Autowired
 	private DepositHistoryConverter depositHistoryConverter;
 
+	private Function<DepositHistory, DepositHistoryDTO> mapper = depositHistory -> this.depositHistoryConverter
+			.createDepositHistory(depositHistory);
+
 	public DepositHistoryDTO create(DepositHistoryDTO depositHistory) {
 		return this.depositHistoryConverter.createDepositHistory(this.depositHistories
 				.persist(this.depositHistoryConverter.createDatabaseDepositHistory(depositHistory)));
@@ -29,16 +35,15 @@ public class DepositHistoryService {
 				this.depositHistories.persist(this.depositHistoryConverter.createUpdateDepositHistory(depositHistory)));
 	}
 
-	public Optional<DepositHistoryDTO> read(int id) {
-		final Optional<DepositHistory> foundDepositHistory = this.depositHistories.stream()
-				.filter(DepositHistory.ID.equal(id)).findFirst();
-		if (foundDepositHistory.isPresent()) {
-			return Optional.of(this.depositHistoryConverter.createDepositHistory(foundDepositHistory.get()));
-		}
-		return Optional.empty();
+	public Optional<DepositHistoryDTO> read(long id) {
+		return this.depositHistories.stream().filter(DepositHistory.ID.equal(id)).map(mapper).findFirst();
 	}
 
-	public void delete(int id) {
+	public void delete(long id) {
 		this.depositHistories.stream().filter(DepositHistory.ID.equal(id)).forEach(this.depositHistories.remover());
+	}
+
+	public List<DepositHistoryDTO> getAll() {
+		return this.depositHistories.stream().map(mapper).collect(Collectors.toList());
 	}
 }

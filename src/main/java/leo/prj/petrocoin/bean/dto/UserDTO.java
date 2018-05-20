@@ -2,6 +2,8 @@ package leo.prj.petrocoin.bean.dto;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import leo.prj.petrocoin.common.CommonConstant;
 
 public class UserDTO {
@@ -18,7 +20,10 @@ public class UserDTO {
 	private String bankName;
 	private String bankAccount;
 	private String bankAccountName;
+
 	private Date createdDate;
+
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date updatedDate;
 
 	public UserDTO() {
@@ -143,16 +148,16 @@ public class UserDTO {
 		this.bankAccountName = bankAccountName;
 	}
 
-	public Date getCreatedDate() {
-		return createdDate;
+	public long getCreatedDate() {
+		return createdDate.getTime();
 	}
 
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
 
-	public Date getUpdatedDate() {
-		return updatedDate;
+	public long getUpdatedDate() {
+		return updatedDate.getTime();
 	}
 
 	public void setUpdatedDate(Date updatedDate) {

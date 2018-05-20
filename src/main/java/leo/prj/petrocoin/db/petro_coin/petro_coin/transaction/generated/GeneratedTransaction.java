@@ -69,10 +69,11 @@ public interface GeneratedTransaction {
      * This Field corresponds to the {@link Transaction} field that can be
      * obtained using the {@link Transaction#getFkCurrency()} method.
      */
-    ComparableField<Transaction, Long, Long> FK_CURRENCY = ComparableField.create(
+    ComparableForeignKeyField<Transaction, Long, Long, User> FK_CURRENCY = ComparableForeignKeyField.create(
         Identifier.FK_CURRENCY,
         o -> OptionalUtil.unwrap(o.getFkCurrency()),
         Transaction::setFkCurrency,
+        User.ID,
         TypeMapper.identity(),
         false
     );
@@ -308,6 +309,15 @@ public interface GeneratedTransaction {
      * @return               the foreign entity referenced
      */
     Optional<User> findFkUserTo(Manager<User> foreignManager);
+    
+    /**
+     * Queries the specified manager for the referenced User. If no such User
+     * exists, an {@code NullPointerException} will be thrown.
+     * 
+     * @param foreignManager the manager to query for the entity
+     * @return               the foreign entity referenced
+     */
+    Optional<User> findFkCurrency(Manager<User> foreignManager);
     
     enum Identifier implements ColumnIdentifier<Transaction> {
         

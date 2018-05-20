@@ -2,6 +2,7 @@ package leo.prj.petrocoin.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,12 +16,22 @@ import leo.prj.petrocoin.bean.dto.ResponseObject;
 import leo.prj.petrocoin.bean.dto.WalletDTO;
 import leo.prj.petrocoin.service.WalletService;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/wallet")
 public class WalletController extends GeneralController {
 
 	@Autowired
 	private WalletService walletService;
+
+	@GetMapping("/all")
+	public ResponseEntity<ResponseObject<Object>> getAll() {
+		try {
+			return ResponseEntity.ok(new ResponseObject<>(this.walletService.getAll()));
+		} catch (final Exception e) {
+			return this.createErrorResponse(e);
+		}
+	}
 
 	@PostMapping("/create")
 	public ResponseEntity<ResponseObject<Object>> create(@RequestBody WalletDTO wallet) {
@@ -58,9 +69,9 @@ public class WalletController extends GeneralController {
 			return this.createErrorResponse(e);
 		}
 	}
-	
-	@GetMapping("/wallet/userId")
-	public ResponseEntity<ResponseObject<Object>> getWalletByUserId(@RequestParam long userId){
+
+	@GetMapping("/userId")
+	public ResponseEntity<ResponseObject<Object>> getWalletByUserId(@RequestParam long userId) {
 		try {
 			return ResponseEntity.ok(new ResponseObject<>(this.walletService.getByUserId(userId)));
 		} catch (final Exception e) {

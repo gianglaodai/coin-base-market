@@ -24,6 +24,15 @@ public class CurrencyController extends GeneralController {
 	@Autowired
 	private CurrencyService currencyService;
 
+	@GetMapping("/all")
+	public ResponseEntity<ResponseObject<Object>> getAll() {
+		try {
+			return ResponseEntity.ok(new ResponseObject<>(this.currencyService.getAll()));
+		} catch (final Exception e) {
+			return this.createErrorResponse(e);
+		}
+	}
+
 	@PostMapping("/create")
 	public ResponseEntity<ResponseObject<Object>> create(@RequestBody CurrencyDTO currency) {
 		try {

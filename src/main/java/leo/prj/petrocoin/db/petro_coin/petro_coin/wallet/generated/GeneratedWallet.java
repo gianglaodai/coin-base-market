@@ -12,6 +12,7 @@ import com.speedment.runtime.field.StringField;
 import com.speedment.runtime.typemapper.TypeMapper;
 import java.util.Optional;
 import java.util.OptionalDouble;
+import java.util.OptionalLong;
 import leo.prj.petrocoin.db.petro_coin.petro_coin.currency.Currency;
 import leo.prj.petrocoin.db.petro_coin.petro_coin.user.User;
 import leo.prj.petrocoin.db.petro_coin.petro_coin.wallet.Wallet;
@@ -46,7 +47,7 @@ public interface GeneratedWallet {
      */
     LongForeignKeyField<Wallet, Long, User> FK_USER = LongForeignKeyField.create(
         Identifier.FK_USER,
-        Wallet::getFkUser,
+        o -> OptionalUtil.unwrap(o.getFkUser()),
         Wallet::setFkUser,
         User.ID,
         TypeMapper.primitive(),
@@ -58,7 +59,7 @@ public interface GeneratedWallet {
      */
     LongForeignKeyField<Wallet, Long, Currency> FK_CURRENCY = LongForeignKeyField.create(
         Identifier.FK_CURRENCY,
-        Wallet::getFkCurrency,
+        o -> OptionalUtil.unwrap(o.getFkCurrency()),
         Wallet::setFkCurrency,
         Currency.ID,
         TypeMapper.primitive(),
@@ -101,7 +102,7 @@ public interface GeneratedWallet {
      * 
      * @return the fkUser of this Wallet
      */
-    long getFkUser();
+    OptionalLong getFkUser();
     
     /**
      * Returns the fkCurrency of this Wallet. The fkCurrency field corresponds
@@ -109,7 +110,7 @@ public interface GeneratedWallet {
      * 
      * @return the fkCurrency of this Wallet
      */
-    long getFkCurrency();
+    OptionalLong getFkCurrency();
     
     /**
      * Returns the amount of this Wallet. The amount field corresponds to the
@@ -181,7 +182,7 @@ public interface GeneratedWallet {
      * @param foreignManager the manager to query for the entity
      * @return               the foreign entity referenced
      */
-    User findFkUser(Manager<User> foreignManager);
+    Optional<User> findFkUser(Manager<User> foreignManager);
     
     /**
      * Queries the specified manager for the referenced Currency. If no such
@@ -190,7 +191,7 @@ public interface GeneratedWallet {
      * @param foreignManager the manager to query for the entity
      * @return               the foreign entity referenced
      */
-    Currency findFkCurrency(Manager<Currency> foreignManager);
+    Optional<Currency> findFkCurrency(Manager<Currency> foreignManager);
     
     enum Identifier implements ColumnIdentifier<Wallet> {
         

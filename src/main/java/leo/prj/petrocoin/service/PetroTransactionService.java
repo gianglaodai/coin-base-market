@@ -1,7 +1,10 @@
 package leo.prj.petrocoin.service;
 
 import java.math.BigInteger;
+import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +22,9 @@ public class PetroTransactionService {
 	@Autowired
 	private PetroTransactionConverter petroTransactionConverter;
 
+	private Function<PetroTransaction, PetroTransactionDTO> mapper = petroTransaction -> this.petroTransactionConverter
+			.createPetroTransaction(petroTransaction);
+
 	public PetroTransactionDTO create(PetroTransactionDTO petroTransaction) {
 		return this.petroTransactionConverter.createPetroTransaction(this.petroTransactions
 				.persist(this.petroTransactionConverter.createDatabasePetroTransaction(petroTransaction)));
@@ -30,15 +36,14 @@ public class PetroTransactionService {
 	}
 
 	public Optional<PetroTransactionDTO> read(BigInteger id) {
-		final Optional<PetroTransaction> foundPetroTransaction = this.petroTransactions.stream()
-				.filter(PetroTransaction.ID.equal(id)).findFirst();
-		if (foundPetroTransaction.isPresent()) {
-			return Optional.of(this.petroTransactionConverter.createPetroTransaction(foundPetroTransaction.get()));
-		}
-		return Optional.empty();
+		return this.petroTransactions.stream().filter(PetroTransaction.ID.equal(id)).map(mapper).findFirst();
 	}
 
 	public void delete(BigInteger id) {
 		this.petroTransactions.stream().filter(PetroTransaction.ID.equal(id)).forEach(this.petroTransactions.remover());
+	}
+
+	public List<PetroTransactionDTO> getAll() {
+		return this.petroTransactions.stream().map(mapper).collect(Collectors.toList());
 	}
 }

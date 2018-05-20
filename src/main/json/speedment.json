@@ -182,10 +182,11 @@
                 "isView" : false,
                 "columns" : [
                   {
-                    "databaseType" : "java.lang.Integer",
-                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
+                    "databaseType" : "java.lang.Long",
                     "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
                     "nullable" : false,
+                    "autoIncrement" : true,
                     "name" : "id",
                     "id" : "id",
                     "ordinalPosition" : 1,
@@ -195,7 +196,7 @@
                     "databaseType" : "java.lang.Long",
                     "expanded" : true,
                     "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
-                    "nullable" : false,
+                    "nullable" : true,
                     "name" : "fk_wallet",
                     "id" : "fk_wallet",
                     "ordinalPosition" : 2,
@@ -217,6 +218,15 @@
                     "name" : "amount",
                     "id" : "amount",
                     "ordinalPosition" : 4,
+                    "enabled" : true
+                  },
+                  {
+                    "databaseType" : "java.lang.String",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "cb_transaction_id",
+                    "id" : "cb_transaction_id",
+                    "ordinalPosition" : 5,
                     "enabled" : true
                   }
                 ],
@@ -242,7 +252,8 @@
                       }
                     ],
                     "name" : "FK_PT_RATING",
-                    "id" : "FK_PT_RATING"
+                    "id" : "FK_PT_RATING",
+                    "enabled" : true
                   },
                   {
                     "expanded" : false,
@@ -259,7 +270,44 @@
                       }
                     ],
                     "name" : "FK_PT_WALLET",
-                    "id" : "FK_PT_WALLET"
+                    "id" : "FK_PT_WALLET",
+                    "enabled" : true
+                  },
+                  {
+                    "expanded" : false,
+                    "foreignKeyColumns" : [
+                      {
+                        "foreignDatabaseName" : "petro-coin",
+                        "foreignSchemaName" : "petro-coin",
+                        "expanded" : true,
+                        "name" : "fk_rating",
+                        "foreignColumnName" : "id",
+                        "id" : "fk_rating",
+                        "foreignTableName" : "rating",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "name" : "FK_RATING",
+                    "id" : "FK_RATING",
+                    "enabled" : true
+                  },
+                  {
+                    "expanded" : false,
+                    "foreignKeyColumns" : [
+                      {
+                        "foreignDatabaseName" : "petro-coin",
+                        "foreignSchemaName" : "petro-coin",
+                        "expanded" : true,
+                        "name" : "fk_wallet",
+                        "foreignColumnName" : "id",
+                        "id" : "fk_wallet",
+                        "foreignTableName" : "wallet",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "name" : "FK_P_WALLET",
+                    "id" : "FK_P_WALLET",
+                    "enabled" : true
                   }
                 ],
                 "primaryKeyColumns" : [
@@ -267,25 +315,11 @@
                     "expanded" : true,
                     "name" : "id",
                     "id" : "id",
-                    "ordinalPosition" : 1
+                    "ordinalPosition" : 1,
+                    "enabled" : true
                   }
                 ],
                 "indexes" : [
-                  {
-                    "expanded" : false,
-                    "unique" : true,
-                    "name" : "PRIMARY",
-                    "indexColumns" : [
-                      {
-                        "orderType" : "ASC",
-                        "expanded" : true,
-                        "name" : "id",
-                        "id" : "id",
-                        "ordinalPosition" : 1
-                      }
-                    ],
-                    "id" : "PRIMARY"
-                  },
                   {
                     "expanded" : false,
                     "unique" : false,
@@ -299,7 +333,8 @@
                         "ordinalPosition" : 1
                       }
                     ],
-                    "id" : "FK_PT_RATING"
+                    "id" : "FK_PT_RATING",
+                    "enabled" : true
                   },
                   {
                     "expanded" : false,
@@ -314,7 +349,56 @@
                         "ordinalPosition" : 1
                       }
                     ],
-                    "id" : "FK_PT_WALLET"
+                    "id" : "FK_PT_WALLET",
+                    "enabled" : true
+                  },
+                  {
+                    "expanded" : false,
+                    "unique" : true,
+                    "name" : "PRIMARY",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "id",
+                        "id" : "id",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "PRIMARY",
+                    "enabled" : true
+                  },
+                  {
+                    "expanded" : false,
+                    "unique" : false,
+                    "name" : "FK_P_WALLET",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "fk_wallet",
+                        "id" : "fk_wallet",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "FK_P_WALLET",
+                    "enabled" : true
+                  },
+                  {
+                    "expanded" : false,
+                    "unique" : false,
+                    "name" : "FK_RATING",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "fk_rating",
+                        "id" : "fk_rating",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "FK_RATING",
+                    "enabled" : true
                   }
                 ],
                 "isView" : false,
@@ -344,7 +428,8 @@
                     "nullable" : true,
                     "name" : "fk_rating",
                     "id" : "fk_rating",
-                    "ordinalPosition" : 3
+                    "ordinalPosition" : 3,
+                    "enabled" : true
                   },
                   {
                     "databaseType" : "java.lang.Double",
@@ -352,7 +437,8 @@
                     "nullable" : true,
                     "name" : "amount",
                     "id" : "amount",
-                    "ordinalPosition" : 4
+                    "ordinalPosition" : 4,
+                    "enabled" : true
                   },
                   {
                     "databaseType" : "java.lang.Integer",
@@ -360,7 +446,8 @@
                     "nullable" : true,
                     "name" : "is_buying",
                     "id" : "is_buying",
-                    "ordinalPosition" : 5
+                    "ordinalPosition" : 5,
+                    "enabled" : true
                   }
                 ],
                 "name" : "petro_transaction",
@@ -385,7 +472,8 @@
                       }
                     ],
                     "name" : "FK_CURRENCY_FROM",
-                    "id" : "FK_CURRENCY_FROM"
+                    "id" : "FK_CURRENCY_FROM",
+                    "enabled" : true
                   },
                   {
                     "expanded" : false,
@@ -402,7 +490,8 @@
                       }
                     ],
                     "name" : "FK_CURRENCY_TO",
-                    "id" : "FK_CURRENCY_TO"
+                    "id" : "FK_CURRENCY_TO",
+                    "enabled" : true
                   }
                 ],
                 "primaryKeyColumns" : [
@@ -410,7 +499,8 @@
                     "expanded" : true,
                     "name" : "id",
                     "id" : "id",
-                    "ordinalPosition" : 1
+                    "ordinalPosition" : 1,
+                    "enabled" : true
                   }
                 ],
                 "indexes" : [
@@ -427,7 +517,8 @@
                         "ordinalPosition" : 1
                       }
                     ],
-                    "id" : "PRIMARY"
+                    "id" : "PRIMARY",
+                    "enabled" : true
                   },
                   {
                     "expanded" : false,
@@ -442,7 +533,8 @@
                         "ordinalPosition" : 1
                       }
                     ],
-                    "id" : "FK_CURRENCY_FROM"
+                    "id" : "FK_CURRENCY_FROM",
+                    "enabled" : true
                   },
                   {
                     "expanded" : false,
@@ -457,7 +549,8 @@
                         "ordinalPosition" : 1
                       }
                     ],
-                    "id" : "FK_CURRENCY_TO"
+                    "id" : "FK_CURRENCY_TO",
+                    "enabled" : true
                   }
                 ],
                 "isView" : false,
@@ -470,7 +563,8 @@
                     "autoIncrement" : true,
                     "name" : "id",
                     "id" : "id",
-                    "ordinalPosition" : 1
+                    "ordinalPosition" : 1,
+                    "enabled" : true
                   },
                   {
                     "databaseType" : "java.lang.Long",
@@ -478,7 +572,8 @@
                     "nullable" : true,
                     "name" : "fk_currency_from",
                     "id" : "fk_currency_from",
-                    "ordinalPosition" : 2
+                    "ordinalPosition" : 2,
+                    "enabled" : true
                   },
                   {
                     "databaseType" : "java.lang.Long",
@@ -486,7 +581,8 @@
                     "nullable" : true,
                     "name" : "fk_currency_to",
                     "id" : "fk_currency_to",
-                    "ordinalPosition" : 3
+                    "ordinalPosition" : 3,
+                    "enabled" : true
                   },
                   {
                     "databaseType" : "java.lang.Double",
@@ -494,7 +590,8 @@
                     "nullable" : true,
                     "name" : "sell_rating",
                     "id" : "sell_rating",
-                    "ordinalPosition" : 4
+                    "ordinalPosition" : 4,
+                    "enabled" : true
                   },
                   {
                     "databaseType" : "java.lang.Double",
@@ -502,7 +599,8 @@
                     "nullable" : true,
                     "name" : "buy_rating",
                     "id" : "buy_rating",
-                    "ordinalPosition" : 5
+                    "ordinalPosition" : 5,
+                    "enabled" : true
                   },
                   {
                     "databaseType" : "java.sql.Timestamp",
@@ -510,15 +608,35 @@
                     "nullable" : true,
                     "name" : "created_date",
                     "id" : "created_date",
-                    "ordinalPosition" : 6
+                    "ordinalPosition" : 6,
+                    "enabled" : true
                   }
                 ],
                 "name" : "rating",
-                "id" : "rating"
+                "id" : "rating",
+                "enabled" : true
               },
               {
                 "expanded" : true,
                 "foreignKeys" : [
+                  {
+                    "expanded" : false,
+                    "foreignKeyColumns" : [
+                      {
+                        "foreignDatabaseName" : "petro-coin",
+                        "foreignSchemaName" : "petro-coin",
+                        "expanded" : true,
+                        "name" : "fk_currency",
+                        "foreignColumnName" : "id",
+                        "id" : "fk_currency",
+                        "foreignTableName" : "user",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "name" : "FK_T_CURRENCY",
+                    "id" : "FK_T_CURRENCY",
+                    "enabled" : true
+                  },
                   {
                     "expanded" : false,
                     "foreignKeyColumns" : [
@@ -534,7 +652,8 @@
                       }
                     ],
                     "name" : "FK_USER_FROM",
-                    "id" : "FK_USER_FROM"
+                    "id" : "FK_USER_FROM",
+                    "enabled" : true
                   },
                   {
                     "expanded" : false,
@@ -551,7 +670,8 @@
                       }
                     ],
                     "name" : "FK_USER_TO",
-                    "id" : "FK_USER_TO"
+                    "id" : "FK_USER_TO",
+                    "enabled" : true
                   }
                 ],
                 "primaryKeyColumns" : [
@@ -559,7 +679,8 @@
                     "expanded" : true,
                     "name" : "id",
                     "id" : "id",
-                    "ordinalPosition" : 1
+                    "ordinalPosition" : 1,
+                    "enabled" : true
                   }
                 ],
                 "indexes" : [
@@ -576,7 +697,24 @@
                         "ordinalPosition" : 1
                       }
                     ],
-                    "id" : "PRIMARY"
+                    "id" : "PRIMARY",
+                    "enabled" : true
+                  },
+                  {
+                    "expanded" : false,
+                    "unique" : false,
+                    "name" : "FK_T_CURRENCY",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "fk_currency",
+                        "id" : "fk_currency",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "FK_T_CURRENCY",
+                    "enabled" : true
                   },
                   {
                     "expanded" : false,
@@ -591,7 +729,8 @@
                         "ordinalPosition" : 1
                       }
                     ],
-                    "id" : "FK_USER_FROM"
+                    "id" : "FK_USER_FROM",
+                    "enabled" : true
                   },
                   {
                     "expanded" : false,
@@ -606,7 +745,8 @@
                         "ordinalPosition" : 1
                       }
                     ],
-                    "id" : "FK_USER_TO"
+                    "id" : "FK_USER_TO",
+                    "enabled" : true
                   }
                 ],
                 "isView" : false,
@@ -618,7 +758,8 @@
                     "autoIncrement" : true,
                     "name" : "id",
                     "id" : "id",
-                    "ordinalPosition" : 1
+                    "ordinalPosition" : 1,
+                    "enabled" : true
                   },
                   {
                     "databaseType" : "java.lang.Long",
@@ -626,7 +767,8 @@
                     "nullable" : true,
                     "name" : "fk_user_from",
                     "id" : "fk_user_from",
-                    "ordinalPosition" : 2
+                    "ordinalPosition" : 2,
+                    "enabled" : true
                   },
                   {
                     "databaseType" : "java.lang.Long",
@@ -634,7 +776,8 @@
                     "nullable" : true,
                     "name" : "fk_user_to",
                     "id" : "fk_user_to",
-                    "ordinalPosition" : 3
+                    "ordinalPosition" : 3,
+                    "enabled" : true
                   },
                   {
                     "databaseType" : "java.lang.Long",
@@ -642,7 +785,8 @@
                     "nullable" : true,
                     "name" : "fk_currency",
                     "id" : "fk_currency",
-                    "ordinalPosition" : 4
+                    "ordinalPosition" : 4,
+                    "enabled" : true
                   },
                   {
                     "databaseType" : "java.lang.Double",
@@ -650,7 +794,8 @@
                     "nullable" : true,
                     "name" : "amount",
                     "id" : "amount",
-                    "ordinalPosition" : 5
+                    "ordinalPosition" : 5,
+                    "enabled" : true
                   },
                   {
                     "databaseType" : "java.lang.String",
@@ -658,7 +803,8 @@
                     "nullable" : true,
                     "name" : "status",
                     "id" : "status",
-                    "ordinalPosition" : 6
+                    "ordinalPosition" : 6,
+                    "enabled" : true
                   },
                   {
                     "databaseType" : "java.lang.String",
@@ -666,7 +812,8 @@
                     "nullable" : true,
                     "name" : "content",
                     "id" : "content",
-                    "ordinalPosition" : 7
+                    "ordinalPosition" : 7,
+                    "enabled" : true
                   },
                   {
                     "databaseType" : "java.sql.Timestamp",
@@ -674,7 +821,8 @@
                     "nullable" : true,
                     "name" : "created_date",
                     "id" : "created_date",
-                    "ordinalPosition" : 8
+                    "ordinalPosition" : 8,
+                    "enabled" : true
                   },
                   {
                     "databaseType" : "java.sql.Timestamp",
@@ -682,11 +830,13 @@
                     "nullable" : true,
                     "name" : "execution_date",
                     "id" : "execution_date",
-                    "ordinalPosition" : 9
+                    "ordinalPosition" : 9,
+                    "enabled" : true
                   }
                 ],
                 "name" : "transaction",
-                "id" : "transaction"
+                "id" : "transaction",
+                "enabled" : true
               },
               {
                 "expanded" : true,
@@ -723,18 +873,9 @@
                     "databaseType" : "java.lang.String",
                     "expanded" : true,
                     "nullable" : true,
-                    "name" : "mobile",
-                    "id" : "mobile",
-                    "ordinalPosition" : 5,
-                    "enabled" : true
-                  },
-                  {
-                    "databaseType" : "java.lang.String",
-                    "expanded" : true,
-                    "nullable" : true,
-                    "name" : "bank_code",
-                    "id" : "bank_code",
-                    "ordinalPosition" : 9,
+                    "name" : "bank_account_name",
+                    "id" : "bank_account_name",
+                    "ordinalPosition" : 11,
                     "enabled" : true
                   },
                   {
@@ -752,9 +893,27 @@
                     "databaseType" : "java.lang.String",
                     "expanded" : true,
                     "nullable" : true,
+                    "name" : "mobile",
+                    "id" : "mobile",
+                    "ordinalPosition" : 2,
+                    "enabled" : true
+                  },
+                  {
+                    "databaseType" : "java.lang.String",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "bank_code",
+                    "id" : "bank_code",
+                    "ordinalPosition" : 3,
+                    "enabled" : true
+                  },
+                  {
+                    "databaseType" : "java.lang.String",
+                    "expanded" : true,
+                    "nullable" : true,
                     "name" : "full_name",
                     "id" : "full_name",
-                    "ordinalPosition" : 2,
+                    "ordinalPosition" : 4,
                     "enabled" : true
                   },
                   {
@@ -763,7 +922,7 @@
                     "nullable" : true,
                     "name" : "password",
                     "id" : "password",
-                    "ordinalPosition" : 3,
+                    "ordinalPosition" : 5,
                     "enabled" : true
                   },
                   {
@@ -772,7 +931,7 @@
                     "nullable" : true,
                     "name" : "email",
                     "id" : "email",
-                    "ordinalPosition" : 4,
+                    "ordinalPosition" : 6,
                     "enabled" : true
                   },
                   {
@@ -781,7 +940,8 @@
                     "nullable" : true,
                     "name" : "phone",
                     "id" : "phone",
-                    "ordinalPosition" : 5
+                    "ordinalPosition" : 7,
+                    "enabled" : true
                   },
                   {
                     "databaseType" : "java.lang.String",
@@ -789,7 +949,7 @@
                     "nullable" : true,
                     "name" : "nation",
                     "id" : "nation",
-                    "ordinalPosition" : 6,
+                    "ordinalPosition" : 8,
                     "enabled" : true
                   },
                   {
@@ -798,7 +958,7 @@
                     "nullable" : true,
                     "name" : "is_active",
                     "id" : "is_active",
-                    "ordinalPosition" : 7,
+                    "ordinalPosition" : 9,
                     "enabled" : true
                   },
                   {
@@ -807,7 +967,7 @@
                     "nullable" : true,
                     "name" : "is_delete",
                     "id" : "is_delete",
-                    "ordinalPosition" : 8,
+                    "ordinalPosition" : 10,
                     "enabled" : true
                   },
                   {
@@ -816,7 +976,8 @@
                     "nullable" : true,
                     "name" : "bank_name",
                     "id" : "bank_name",
-                    "ordinalPosition" : 9
+                    "ordinalPosition" : 11,
+                    "enabled" : true
                   },
                   {
                     "databaseType" : "java.lang.String",
@@ -824,15 +985,8 @@
                     "nullable" : true,
                     "name" : "bank_account",
                     "id" : "bank_account",
-                    "ordinalPosition" : 10
-                  },
-                  {
-                    "databaseType" : "java.lang.String",
-                    "expanded" : true,
-                    "nullable" : true,
-                    "name" : "bank_account_name",
-                    "id" : "bank_account_name",
-                    "ordinalPosition" : 11
+                    "ordinalPosition" : 12,
+                    "enabled" : true
                   },
                   {
                     "databaseType" : "java.sql.Timestamp",
@@ -840,7 +994,8 @@
                     "nullable" : true,
                     "name" : "created_date",
                     "id" : "created_date",
-                    "ordinalPosition" : 12
+                    "ordinalPosition" : 13,
+                    "enabled" : true
                   },
                   {
                     "databaseType" : "java.sql.Timestamp",
@@ -848,7 +1003,8 @@
                     "nullable" : true,
                     "name" : "updated_date",
                     "id" : "updated_date",
-                    "ordinalPosition" : 13
+                    "ordinalPosition" : 14,
+                    "enabled" : true
                   }
                 ],
                 "name" : "user",
@@ -873,7 +1029,8 @@
                       }
                     ],
                     "name" : "FK_CURRENCY",
-                    "id" : "FK_CURRENCY"
+                    "id" : "FK_CURRENCY",
+                    "enabled" : true
                   },
                   {
                     "expanded" : false,
@@ -890,7 +1047,8 @@
                       }
                     ],
                     "name" : "FK_USER",
-                    "id" : "FK_USER"
+                    "id" : "FK_USER",
+                    "enabled" : true
                   }
                 ],
                 "primaryKeyColumns" : [
@@ -898,7 +1056,8 @@
                     "expanded" : true,
                     "name" : "id",
                     "id" : "id",
-                    "ordinalPosition" : 1
+                    "ordinalPosition" : 1,
+                    "enabled" : true
                   }
                 ],
                 "indexes" : [
@@ -915,7 +1074,8 @@
                         "ordinalPosition" : 1
                       }
                     ],
-                    "id" : "PRIMARY"
+                    "id" : "PRIMARY",
+                    "enabled" : true
                   },
                   {
                     "expanded" : false,
@@ -930,7 +1090,8 @@
                         "ordinalPosition" : 1
                       }
                     ],
-                    "id" : "FK_CURRENCY"
+                    "id" : "FK_CURRENCY",
+                    "enabled" : true
                   },
                   {
                     "expanded" : false,
@@ -945,7 +1106,8 @@
                         "ordinalPosition" : 1
                       }
                     ],
-                    "id" : "FK_USER"
+                    "id" : "FK_USER",
+                    "enabled" : true
                   }
                 ],
                 "isView" : false,
@@ -958,25 +1120,28 @@
                     "autoIncrement" : true,
                     "name" : "id",
                     "id" : "id",
-                    "ordinalPosition" : 1
+                    "ordinalPosition" : 1,
+                    "enabled" : true
                   },
                   {
                     "databaseType" : "java.lang.Long",
                     "expanded" : true,
                     "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
-                    "nullable" : false,
+                    "nullable" : true,
                     "name" : "fk_user",
                     "id" : "fk_user",
-                    "ordinalPosition" : 2
+                    "ordinalPosition" : 2,
+                    "enabled" : true
                   },
                   {
                     "databaseType" : "java.lang.Long",
                     "expanded" : true,
                     "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
-                    "nullable" : false,
+                    "nullable" : true,
                     "name" : "fk_currency",
                     "id" : "fk_currency",
-                    "ordinalPosition" : 3
+                    "ordinalPosition" : 3,
+                    "enabled" : true
                   },
                   {
                     "databaseType" : "java.lang.Double",
@@ -984,7 +1149,8 @@
                     "nullable" : true,
                     "name" : "amount",
                     "id" : "amount",
-                    "ordinalPosition" : 4
+                    "ordinalPosition" : 4,
+                    "enabled" : true
                   },
                   {
                     "databaseType" : "java.lang.String",
@@ -992,11 +1158,13 @@
                     "nullable" : true,
                     "name" : "wallet_address",
                     "id" : "wallet_address",
-                    "ordinalPosition" : 5
+                    "ordinalPosition" : 5,
+                    "enabled" : true
                   }
                 ],
                 "name" : "wallet",
-                "id" : "wallet"
+                "id" : "wallet",
+                "enabled" : true
               }
             ],
             "name" : "petro-coin",

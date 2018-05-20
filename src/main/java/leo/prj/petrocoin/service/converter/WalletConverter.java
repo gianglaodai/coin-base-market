@@ -24,8 +24,8 @@ public class WalletConverter {
 		}
 		final WalletDTO walletBean = new WalletDTO();
 		walletBean.setAmount(wallet.getAmount().orElse(0));
-		walletBean.setFkCurrency(wallet.getFkCurrency());
-		walletBean.setFkUser(wallet.getFkUser());
+		walletBean.setFkCurrency(wallet.getFkCurrency().getAsLong());
+		walletBean.setFkUser(wallet.getFkUser().getAsLong());
 		walletBean.setId(wallet.getId());
 		walletBean.setWalletAddress(wallet.getWalletAddress().orElse(CommonConstant.EMPTY));
 		return walletBean;

@@ -28,6 +28,28 @@ public interface GeneratedUser {
     
     /**
      * This Field corresponds to the {@link User} field that can be obtained
+     * using the {@link User#getBankAccountName()} method.
+     */
+    StringField<User, String> BANK_ACCOUNT_NAME = StringField.create(
+        Identifier.BANK_ACCOUNT_NAME,
+        o -> OptionalUtil.unwrap(o.getBankAccountName()),
+        User::setBankAccountName,
+        TypeMapper.identity(),
+        false
+    );
+    /**
+     * This Field corresponds to the {@link User} field that can be obtained
+     * using the {@link User#getId()} method.
+     */
+    LongField<User, Long> ID = LongField.create(
+        Identifier.ID,
+        User::getId,
+        User::setId,
+        TypeMapper.primitive(),
+        true
+    );
+    /**
+     * This Field corresponds to the {@link User} field that can be obtained
      * using the {@link User#getMobile()} method.
      */
     StringField<User, String> MOBILE = StringField.create(
@@ -47,17 +69,6 @@ public interface GeneratedUser {
         User::setBankCode,
         TypeMapper.identity(),
         false
-    );
-    /**
-     * This Field corresponds to the {@link User} field that can be obtained
-     * using the {@link User#getId()} method.
-     */
-    LongField<User, Long> ID = LongField.create(
-        Identifier.ID,
-        User::getId,
-        User::setId,
-        TypeMapper.primitive(),
-        true
     );
     /**
      * This Field corresponds to the {@link User} field that can be obtained
@@ -160,17 +171,6 @@ public interface GeneratedUser {
     );
     /**
      * This Field corresponds to the {@link User} field that can be obtained
-     * using the {@link User#getBankAccountName()} method.
-     */
-    StringField<User, String> BANK_ACCOUNT_NAME = StringField.create(
-        Identifier.BANK_ACCOUNT_NAME,
-        o -> OptionalUtil.unwrap(o.getBankAccountName()),
-        User::setBankAccountName,
-        TypeMapper.identity(),
-        false
-    );
-    /**
-     * This Field corresponds to the {@link User} field that can be obtained
      * using the {@link User#getCreatedDate()} method.
      */
     ComparableField<User, Timestamp, Timestamp> CREATED_DATE = ComparableField.create(
@@ -193,6 +193,23 @@ public interface GeneratedUser {
     );
     
     /**
+     * Returns the bankAccountName of this User. The bankAccountName field
+     * corresponds to the database column
+     * petro-coin.petro-coin.user.bank_account_name.
+     * 
+     * @return the bankAccountName of this User
+     */
+    Optional<String> getBankAccountName();
+    
+    /**
+     * Returns the id of this User. The id field corresponds to the database
+     * column petro-coin.petro-coin.user.id.
+     * 
+     * @return the id of this User
+     */
+    long getId();
+    
+    /**
      * Returns the mobile of this User. The mobile field corresponds to the
      * database column petro-coin.petro-coin.user.mobile.
      * 
@@ -207,14 +224,6 @@ public interface GeneratedUser {
      * @return the bankCode of this User
      */
     Optional<String> getBankCode();
-    
-    /**
-     * Returns the id of this User. The id field corresponds to the database
-     * column petro-coin.petro-coin.user.id.
-     * 
-     * @return the id of this User
-     */
-    long getId();
     
     /**
      * Returns the fullName of this User. The fullName field corresponds to the
@@ -289,15 +298,6 @@ public interface GeneratedUser {
     Optional<String> getBankAccount();
     
     /**
-     * Returns the bankAccountName of this User. The bankAccountName field
-     * corresponds to the database column
-     * petro-coin.petro-coin.user.bank_account_name.
-     * 
-     * @return the bankAccountName of this User
-     */
-    Optional<String> getBankAccountName();
-    
-    /**
      * Returns the createdDate of this User. The createdDate field corresponds
      * to the database column petro-coin.petro-coin.user.created_date.
      * 
@@ -312,6 +312,25 @@ public interface GeneratedUser {
      * @return the updatedDate of this User
      */
     Optional<Timestamp> getUpdatedDate();
+    
+    /**
+     * Sets the bankAccountName of this User. The bankAccountName field
+     * corresponds to the database column
+     * petro-coin.petro-coin.user.bank_account_name.
+     * 
+     * @param bankAccountName to set of this User
+     * @return                this User instance
+     */
+    User setBankAccountName(String bankAccountName);
+    
+    /**
+     * Sets the id of this User. The id field corresponds to the database column
+     * petro-coin.petro-coin.user.id.
+     * 
+     * @param id to set of this User
+     * @return   this User instance
+     */
+    User setId(long id);
     
     /**
      * Sets the mobile of this User. The mobile field corresponds to the
@@ -330,15 +349,6 @@ public interface GeneratedUser {
      * @return         this User instance
      */
     User setBankCode(String bankCode);
-    
-    /**
-     * Sets the id of this User. The id field corresponds to the database column
-     * petro-coin.petro-coin.user.id.
-     * 
-     * @param id to set of this User
-     * @return   this User instance
-     */
-    User setId(long id);
     
     /**
      * Sets the fullName of this User. The fullName field corresponds to the
@@ -422,16 +432,6 @@ public interface GeneratedUser {
     User setBankAccount(String bankAccount);
     
     /**
-     * Sets the bankAccountName of this User. The bankAccountName field
-     * corresponds to the database column
-     * petro-coin.petro-coin.user.bank_account_name.
-     * 
-     * @param bankAccountName to set of this User
-     * @return                this User instance
-     */
-    User setBankAccountName(String bankAccountName);
-    
-    /**
      * Sets the createdDate of this User. The createdDate field corresponds to
      * the database column petro-coin.petro-coin.user.created_date.
      * 
@@ -451,9 +451,10 @@ public interface GeneratedUser {
     
     enum Identifier implements ColumnIdentifier<User> {
         
+        BANK_ACCOUNT_NAME ("bank_account_name"),
+        ID                ("id"),
         MOBILE            ("mobile"),
         BANK_CODE         ("bank_code"),
-        ID                ("id"),
         FULL_NAME         ("full_name"),
         PASSWORD          ("password"),
         EMAIL             ("email"),
@@ -463,7 +464,6 @@ public interface GeneratedUser {
         IS_DELETE         ("is_delete"),
         BANK_NAME         ("bank_name"),
         BANK_ACCOUNT      ("bank_account"),
-        BANK_ACCOUNT_NAME ("bank_account_name"),
         CREATED_DATE      ("created_date"),
         UPDATED_DATE      ("updated_date");
         

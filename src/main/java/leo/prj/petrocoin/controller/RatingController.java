@@ -1,9 +1,8 @@
 package leo.prj.petrocoin.controller;
 
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,12 +16,22 @@ import leo.prj.petrocoin.bean.dto.RatingDTO;
 import leo.prj.petrocoin.bean.dto.ResponseObject;
 import leo.prj.petrocoin.service.RatingService;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/rating")
 public class RatingController extends GeneralController {
 
 	@Autowired
 	private RatingService ratingService;
+
+	@GetMapping("/all")
+	public ResponseEntity<ResponseObject<Object>> getAll() {
+		try {
+			return ResponseEntity.ok(new ResponseObject<>(this.ratingService.getAll()));
+		} catch (final Exception e) {
+			return this.createErrorResponse(e);
+		}
+	}
 
 	@PostMapping("/create")
 	public ResponseEntity<ResponseObject<Object>> create(@RequestBody RatingDTO rating) {
@@ -60,9 +69,9 @@ public class RatingController extends GeneralController {
 			return this.createErrorResponse(e);
 		}
 	}
-	
+
 	@GetMapping("/rating/createdDate")
-	public ResponseEntity<ResponseObject<Object>> getRatingByCreatedDate(@RequestParam long createdDate){
+	public ResponseEntity<ResponseObject<Object>> getRatingByCreatedDate(@RequestParam long createdDate) {
 		try {
 			return ResponseEntity.ok(new ResponseObject<>(this.ratingService.getRatingByCreatedDate(createdDate)));
 		} catch (final Exception e) {

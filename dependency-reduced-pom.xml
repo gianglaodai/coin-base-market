@@ -11,21 +11,12 @@
   <artifactId>coin-base-market</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <build>
-    <resources>
-      <resource>
-        <targetPath>${project.build.directory}</targetPath>
-        <directory>src/main/resources</directory>
-        <includes>
-          <include>application.properties</include>
-        </includes>
-      </resource>
-    </resources>
     <finalName>petro-coin</finalName>
     <plugins>
       <plugin>
         <groupId>com.speedment</groupId>
         <artifactId>speedment-maven-plugin</artifactId>
-        <version>3.1.0</version>
+        <version>${speedment.version}</version>
       </plugin>
       <plugin>
         <groupId>org.springframework.boot</groupId>
@@ -42,17 +33,20 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <resource>META-INF/spring.handlers</resource>
+                  <resource>META-INF/spring.schemas</resource>
                 </transformer>
                 <transformer>
                   <resource>META-INF/spring.factories</resource>
                 </transformer>
                 <transformer>
-                  <resource>META-INF/spring.schemas</resource>
+                  <resource>META-INF/spring.handlers</resource>
                 </transformer>
-                <transformer />
                 <transformer>
-                  <mainClass>${start-class}</mainClass>
+                  <manifestEntries>
+                    <Main-Class>${start-class}</Main-Class>
+                    <X-Compile-Source-JDK>${maven.compile.source}</X-Compile-Source-JDK>
+                    <X-Compile-Target-JDK>${maven.compile.target}</X-Compile-Target-JDK>
+                  </manifestEntries>
                 </transformer>
               </transformers>
             </configuration>
@@ -82,16 +76,18 @@
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>ch.vorburger.mariaDB4j</groupId>
-      <artifactId>mariaDB4j</artifactId>
-      <version>2.2.3</version>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.17</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>
   <properties>
     <maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
     <mariadb-java-client.version>2.2.3</mariadb-java-client.version>
+    <speedment.version>3.1.0</speedment.version>
     <maven.compiler.target>1.8</maven.compiler.target>
+    <log4j.version>1.2.17</log4j.version>
     <mariaDB4j.version>2.2.3</mariaDB4j.version>
     <maven-eclipse-plugin.version>2.9</maven-eclipse-plugin.version>
     <jdk.version>1.8</jdk.version>

@@ -2,24 +2,36 @@ package leo.prj.petrocoin.bean.dto;
 
 import java.util.Date;
 
+import leo.prj.petrocoin.common.CommonConstant;
+
 public class DepositHistoryDTO {
-	private int id;
+	private long id;
 	private long fkWallet;
 	private Date depositDate;
 	private double amount;
+	private String cbTransactionId;
 
 	public DepositHistoryDTO() {
 		this.id = -1;
 		this.fkWallet = -1;
 		this.depositDate = new Date();
 		this.amount = 0;
+		this.cbTransactionId = CommonConstant.EMPTY;
 	}
 
-	public int getId() {
+	public String getCbTransactionId() {
+		return cbTransactionId;
+	}
+
+	public void setCbTransactionId(String cbTransactionId) {
+		this.cbTransactionId = cbTransactionId;
+	}
+
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

@@ -15,10 +15,11 @@ public class UserConverter {
 	public User createDatabaseUser(UserDTO user) {
 		return new UserImpl().setBankAccount(user.getBankAccount()).setBankAccountName(user.getBankAccountName())
 				.setBankCode(user.getBankCode()).setBankName(user.getBankName())
-				.setCreatedDate(new Timestamp(user.getCreatedDate().getTime())).setFullName(user.getFullName())
-				.setIsActive(user.isActive() ? 1 : 0).setIsDelete(user.isDelete() ? 1 : 0).setMobile(user.getMobile())
-				.setNation(user.getNation()).setPassword(user.getPassword()).setPhone(user.getPhone())
-				.setUpdatedDate(new Timestamp(user.getUpdatedDate().getTime()));
+				.setCreatedDate(new Timestamp(user.getCreatedDate())).setEmail(user.getEmail())
+				.setFullName(user.getFullName()).setIsActive(user.isActive() ? 1 : 0)
+				.setIsDelete(user.isDelete() ? 1 : 0).setMobile(user.getMobile()).setNation(user.getNation())
+				.setPassword(user.getPassword()).setPhone(user.getPhone())
+				.setUpdatedDate(new Timestamp(user.getUpdatedDate()));
 	}
 
 	public User createUpdateDatabaseUser(leo.prj.petrocoin.bean.dto.UserDTO user) {

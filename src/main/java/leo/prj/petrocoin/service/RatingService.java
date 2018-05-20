@@ -1,9 +1,9 @@
 package leo.prj.petrocoin.service;
 
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +22,8 @@ public class RatingService {
 	@Autowired
 	private RatingManager ratings;
 
+	private Function<Rating, RatingDTO> mapper = rating -> this.ratingConverter.createRating(rating);
+
 	public RatingDTO create(RatingDTO rating) {
 		return this.ratingConverter
 				.createRating(this.ratings.persist(this.ratingConverter.createDatabaseRating(rating)));
@@ -33,11 +35,7 @@ public class RatingService {
 	}
 
 	public Optional<RatingDTO> read(long id) {
-		final Optional<Rating> foundRating = this.ratings.stream().filter(Rating.ID.equal(id)).findFirst();
-		if (foundRating.isPresent()) {
-			return Optional.of(this.ratingConverter.createRating(foundRating.get()));
-		}
-		return Optional.empty();
+		return this.ratings.stream().filter(Rating.ID.equal(id)).map(mapper).findFirst();
 	}
 
 	public void delete(long id) {
@@ -45,7 +43,11 @@ public class RatingService {
 	}
 
 	public List<RatingDTO> getRatingByCreatedDate(long createdDate) {
-		return this.ratings.stream().filter(Rating.CREATED_DATE.equal(new Timestamp(createdDate)))
-				.map(rating -> this.ratingConverter.createRating(rating)).collect(Collectors.toList());
+		return this.ratings.stream().filter(Rating.CREATED_DATE.equal(new Timestamp(createdDate))).map(mapper)
+				.collect(Collectors.toList());
+	}
+
+	public List<RatingDTO> getAll() {
+		return this.ratings.stream().map(mapper).collect(Collectors.toList());
 	}
 }

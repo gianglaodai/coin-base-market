@@ -32,7 +32,8 @@ public interface GeneratedDepositHistoryManager extends Manager<DepositHistory> 
         DepositHistory.ID,
         DepositHistory.FK_WALLET,
         DepositHistory.DEPOSIT_DATE,
-        DepositHistory.AMOUNT
+        DepositHistory.AMOUNT,
+        DepositHistory.CB_TRANSACTION_ID
     ));
     
     @Override
